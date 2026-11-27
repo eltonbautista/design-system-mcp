@@ -3,6 +3,7 @@
  * An on/off switch for a setting that takes effect immediately.
  * A `<button role="switch">` labelled by a native `<label>`.
  */
+import '../../styles/focus.css'
 import { useId } from 'vue'
 
 defineOptions({ name: 'CabSwitch' })

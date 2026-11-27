@@ -1,5 +1,6 @@
 <script setup lang="ts">
 /** Internal: an error message with a drawn warning icon, so colour is never the only signal. */
+import '../styles/field.css'
 defineProps<{ id: string }>()
 </script>
 

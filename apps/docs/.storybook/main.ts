@@ -9,12 +9,9 @@ const config: StorybookConfig = {
   framework: { name: '@storybook/vue3-vite', options: { docgen: 'vue-component-meta' } },
   core: { disableTelemetry: true },
   viteFinal: async cfg => {
-    cfg.resolve ??= {}
-    const alias = [{ find: /^@cabinet-ds\/vue$/, replacement: vueSrc }]
-    cfg.resolve.alias = Array.isArray(cfg.resolve.alias)
-      ? [...alias, ...cfg.resolve.alias]
-      : [...alias, ...Object.entries(cfg.resolve.alias ?? {}).map(([find, replacement]) => ({ find, replacement: replacement as string }))]
-    return cfg
+    // Examples import from '@cabinet-ds/vue'; point that at the source so docs never show a stale build.
+    const { mergeConfig } = await import('vite')
+    return mergeConfig(cfg, { resolve: { alias: [{ find: /^@cabinet-ds\/vue$/, replacement: vueSrc }] } })
   },
 }
 export default config

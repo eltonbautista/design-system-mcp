@@ -2,6 +2,7 @@
 .cab-field { display: grid; gap: var(--cab-space-2); font-family: var(--cab-font-family-body); color: var(--cab-color-text-default); }
 .cab-field__label { font-size: var(--cab-font-size-md); font-weight: var(--cab-font-weight-bold); }
 .cab-field__required { color: var(--cab-color-action-primary-bg); margin-inline-start: var(--cab-space-1); }
+.cab-field__hint, .cab-field__error { margin: 0; }
 .cab-field__hint { font-size: var(--cab-font-size-sm); color: var(--cab-color-text-muted); }
 .cab-field__error {
   display: flex; gap: var(--cab-space-2); align-items: baseline;

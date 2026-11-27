@@ -3,6 +3,7 @@
  * A checkbox for a yes/no choice that is confirmed later (e.g. on form submit).
  * Native `<input type="checkbox">` with a chunky custom box; native semantics are kept.
  */
+import '../../styles/field.css'
 import { useId } from 'vue'
 
 defineOptions({ name: 'CabCheckbox' })
