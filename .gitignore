@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.superpowers/
+.impeccable/config.local.json
+storybook-static/
+*.log
+.DS_Store
