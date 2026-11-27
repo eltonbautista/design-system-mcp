@@ -1,6 +1,6 @@
 {
   "package": "@eltonbautista/vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "setup": "// main.ts: once per app, before mounting\nimport '@eltonbautista/tokens/tokens.css'   // design tokens (--cab-* custom properties)\nimport '@eltonbautista/tokens/fonts.css'    // Sora + Outfit\nimport '@eltonbautista/vue/style.css'        // component styles",
   "components": [
     {
