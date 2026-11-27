@@ -12,6 +12,8 @@ export interface ComponentEntry {
   import: string
   description: string
   props: PropEntry[]
+  /** Exported TypeScript interfaces the props refer to (e.g. option shapes), verbatim. */
+  types: string[]
   events: { name: string; type: string; description: string }[]
   slots: { name: string; type: string; description: string }[]
   a11y: { summary: string; pattern: string; keyboard: string; focus: string; screenReader: string }

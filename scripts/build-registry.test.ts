@@ -79,3 +79,9 @@ test('fails loudly when a component lacks docs.md', () => {
     rmSync(tmp, { recursive: true, force: true })
   }
 })
+
+test('exported interfaces used by props are included verbatim', () => {
+  expect(byName('CabSelect').types.join('\n')).toMatch(/export interface CabSelectOption \{[\s\S]*value: string[\s\S]*\}/)
+  expect(byName('CabTabs').types.join('\n')).toContain('export interface CabTab {')
+  expect(byName('CabButton').types).toEqual([])
+})
