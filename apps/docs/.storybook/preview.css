@@ -1,0 +1,7 @@
+body, .sb-show-main, .docs-story {
+  background: var(--cab-color-bg-canvas);
+  color: var(--cab-color-text-default);
+  font-family: var(--cab-font-family-body);
+}
+::selection { background: var(--cab-color-highlight-bg); color: var(--cab-color-text-default); }
+input, textarea { caret-color: var(--cab-color-action-primary-bg); }

@@ -20,4 +20,4 @@ A 3px purple ring (`--cab-color-focus-ring`) with a 3px offset appears on keyboa
 
 ## Screen reader
 
-Announced as "<label>, button". While `loading`, `aria-busy="true"` is set and the spinner is hidden from assistive tech, so the label stays the accessible name. Disabled buttons are announced as dimmed/unavailable. Icon-only buttons are not supported: always give the button visible text.
+Announced as "*label*, button". While `loading`, `aria-busy="true"` is set and the spinner is hidden from assistive tech, so the label stays the accessible name. Disabled buttons are announced as dimmed/unavailable. Icon-only buttons are not supported: always give the button visible text.
