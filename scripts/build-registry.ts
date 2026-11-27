@@ -83,7 +83,14 @@ export function buildRegistry(root: string): Registry {
     }
   })
 
-  return { package: pkg.name, version: pkg.version, components, tokens }
+  const tokensPkg = readJson<{ name: string }>(join(root, 'packages/tokens/package.json')).name
+  const setup = [
+    '// main.ts: once per app, before mounting',
+    `import '${tokensPkg}/tokens.css'   // design tokens (--cab-* custom properties)`,
+    `import '${tokensPkg}/fonts.css'    // Sora + Outfit`,
+    `import '${pkg.name}/style.css'        // component styles`,
+  ].join('\n')
+  return { package: pkg.name, version: pkg.version, setup, components, tokens }
 }
 
 export const registryPath = (root: string) => join(root, 'packages/mcp/src/registry.json')

@@ -1,0 +1,39 @@
+{
+  "onlyLibraryComponents": true,
+  "rawControls": 0,
+  "unknownComponents": [],
+  "unknownProps": [],
+  "hardcodedColors": 0,
+  "cabUsages": 12,
+  "unknownTokens": [],
+  "buildOk": true,
+  "axeViolations": 1,
+  "axeRules": [
+    "page-has-heading-one"
+  ],
+  "judgment": {
+    "trackCards": [
+      {
+        "track": "board",
+        "wholeCardClick": false,
+        "oneTabStop": false,
+        "conciseLinkName": false
+      },
+      {
+        "track": "digital",
+        "wholeCardClick": false,
+        "oneTabStop": false,
+        "conciseLinkName": false
+      },
+      {
+        "track": "larp",
+        "wholeCardClick": false,
+        "oneTabStop": false,
+        "conciseLinkName": false
+      }
+    ],
+    "trackCardsCorrect": 0,
+    "remindersControl": "missing",
+    "conductControl": "missing"
+  }
+}

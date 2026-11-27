@@ -73,6 +73,8 @@ const labelled = computed(() => props.title && props.as !== 'div' ? titleId : un
 /* Stretched link: the title link's ::after covers the card, so the whole card is one target. */
 .cab-card__link { color: inherit; text-decoration: none; border-radius: var(--cab-radius-sm); }
 .cab-card__link::after { content: ''; position: absolute; inset: 0; border-radius: var(--cab-radius-lg); }
+/* Other interactive content sits above the stretched link so it stays clickable. */
+.cab-card--link :is(a[href], button, input, select, textarea, label, [tabindex]):not(.cab-card__link) { position: relative; z-index: 1; }
 .cab-card--link { transition: box-shadow var(--cab-motion-duration-base) var(--cab-motion-easing-standard); }
 .cab-card--link:hover { box-shadow: var(--cab-shadow-ledge), 0 12px 24px -12px rgb(36 22 63 / 0.3); }
 .cab-card--link:hover .cab-card__link { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 2px; }

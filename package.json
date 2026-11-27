@@ -14,7 +14,9 @@
     "registry": "tsx scripts/build-registry.ts",
     "registry:check": "tsx scripts/build-registry.ts --check",
     "release": "pnpm build && changeset publish",
-    "version-packages": "changeset version && pnpm install --lockfile-only && pnpm --filter @eltonbautista/tokens build && pnpm registry"
+    "version-packages": "changeset version && pnpm install --lockfile-only && pnpm --filter @eltonbautista/tokens build && pnpm registry",
+    "demo:report": "tsx demo/report.ts",
+    "figma:compare": "tsx scripts/compare-figma-export.ts"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",

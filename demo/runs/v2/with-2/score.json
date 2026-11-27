@@ -1,0 +1,37 @@
+{
+  "onlyLibraryComponents": true,
+  "rawControls": 0,
+  "unknownComponents": [],
+  "unknownProps": [],
+  "hardcodedColors": 0,
+  "cabUsages": 10,
+  "unknownTokens": [],
+  "buildOk": true,
+  "axeViolations": 0,
+  "axeRules": [],
+  "judgment": {
+    "trackCards": [
+      {
+        "track": "board",
+        "wholeCardClick": true,
+        "oneTabStop": true,
+        "conciseLinkName": true
+      },
+      {
+        "track": "digital",
+        "wholeCardClick": true,
+        "oneTabStop": true,
+        "conciseLinkName": true
+      },
+      {
+        "track": "larp",
+        "wholeCardClick": true,
+        "oneTabStop": true,
+        "conciseLinkName": true
+      }
+    ],
+    "trackCardsCorrect": 3,
+    "remindersControl": "switch",
+    "conductControl": "checkbox"
+  }
+}

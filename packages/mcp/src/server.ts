@@ -16,7 +16,8 @@ export function createServer(registry: Registry, version = registry.version): Mc
       instructions:
         `Cabinet is a Vue 3 component library (${registry.package}). Build UI only from its components and style ` +
         `with its CSS custom properties (--cab-*), never hard-coded colours. Call list_components first, then ` +
-        `get_component for props/keyboard behaviour and get_usage_example for working code.`,
+        `get_component for props/keyboard behaviour and get_usage_example for working code.\n\n` +
+        `Setup (required once per app, or components render unstyled and tokens are undefined):\n${registry.setup}`,
     },
   )
 
@@ -35,7 +36,7 @@ export function createServer(registry: Registry, version = registry.version): Mc
     const c = resolveComponent(registry, name)
     if ('error' in c) return fail(c.error)
     const { examples, ...rest } = c
-    return text({ ...rest, examples: examples.map(e => ({ name: e.name, description: e.description })) })
+    return text({ ...rest, setup: registry.setup, examples: examples.map(e => ({ name: e.name, description: e.description })) })
   })
 
   server.registerTool('get_tokens', {

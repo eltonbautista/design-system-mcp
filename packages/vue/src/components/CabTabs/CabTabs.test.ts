@@ -111,3 +111,13 @@ test('examples have no axe violations', async () => {
     await expectNoA11yViolations(screen.container)
   }
 })
+
+test('after a tab is inserted at the start, arrow keys still focus and select the same tab', async () => {
+  const two = [{ id: 'a', label: 'Alpha' }, { id: 'b', label: 'Bravo' }]
+  const screen = await render(CabTabs, { props: { tabs: two, label: 'Order', modelValue: 'a' }, slots })
+  await screen.rerender({ tabs: [{ id: 'z', label: 'Zulu' }, ...two] })
+  focusTab(screen as Awaited<ReturnType<typeof mount>>, 'Alpha')
+  await userEvent.keyboard('{ArrowRight}')
+  expect(focused()).toBe('Bravo')
+  expect(screen.emitted('update:modelValue')?.at(-1)).toEqual(['b'])
+})

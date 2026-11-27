@@ -90,3 +90,10 @@ test('get_usage_example errors on unknown example name with the valid names', as
   expect(r.isError).toBe(true)
   expect(r.content[0]!.text).toContain('Basic')
 })
+
+test('setup imports reach the assistant: in server instructions and every get_component result', async () => {
+  const client = await connect()
+  expect(client.getInstructions()).toContain("import '@eltonbautista/vue/style.css'")
+  const entry = json(await call(client, 'get_component', { name: 'button' }))
+  expect(entry.setup).toContain("import '@eltonbautista/tokens/tokens.css'")
+})

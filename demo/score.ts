@@ -9,6 +9,7 @@ import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import type { Registry } from '../packages/mcp/src/registry.types'
+import { judgmentChecks, type Judgment } from './judgment'
 
 export interface StaticScore {
   onlyLibraryComponents: boolean
@@ -17,8 +18,10 @@ export interface StaticScore {
   unknownProps: string[]
   hardcodedColors: number
   cabUsages: number
+  /** --cab-* custom properties referenced in the code that the tokens package doesn't define. */
+  unknownTokens: string[]
 }
-export interface Score extends StaticScore { buildOk: boolean; axeViolations: number | null; axeRules: string[] }
+export interface Score extends StaticScore { buildOk: boolean; axeViolations: number | null; axeRules: string[]; judgment: Judgment | null }
 
 const PASSTHROUGH = new Set(['class', 'style', 'id', 'key', 'ref', 'role', 'title-attr'])
 const camel = (s: string) => s.replace(/-([a-z])/g, (_, c: string) => c.toUpperCase())
@@ -31,9 +34,13 @@ function vueFiles(dir: string): string[] {
   })
 }
 
-const block = (src: string, tag: 'template' | 'style') =>
-  [...src.matchAll(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, 'g'))].map(m => m[1]).join('\n')
-  // template: the outermost <template> block is enough for these checks
+/** The SFC's outer <template> (first opening tag to last closing tag, so nested slot templates stay inside). */
+function templateBlock(src: string): string {
+  const start = src.indexOf('<template')
+  const end = src.lastIndexOf('</template>')
+  return start === -1 || end === -1 ? '' : src.slice(src.indexOf('>', start) + 1, end)
+}
+const styleBlocks = (src: string) => [...src.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)].map(m => m[1]).join('\n')
 
 /** Attribute names on a tag's opening text, normalised to prop names; null for non-prop attributes. */
 function attrToProp(raw: string): { kind: 'prop' | 'event' | 'skip'; name: string } {
@@ -49,14 +56,16 @@ function attrToProp(raw: string): { kind: 'prop' | 'event' | 'skip'; name: strin
 export function staticScore(dir: string, registry: Registry): StaticScore {
   const byName = new Map(registry.components.map(c => [c.name, c]))
   let rawControls = 0, hardcodedColors = 0, cabUsages = 0
-  const unknownComponents = new Set<string>(), unknownProps = new Set<string>()
+  const unknownComponents = new Set<string>(), unknownProps = new Set<string>(), unknownTokens = new Set<string>()
+  const knownTokens = new Set(registry.tokens.map(t => t.cssVar))
   const colour = /#[0-9a-fA-F]{3,8}\b|\b(?:rgba?|hsla?)\(/g
 
   for (const file of vueFiles(join(dir, 'src'))) {
     const src = readFileSync(file, 'utf8')
-    const template = block(src, 'template')
+    for (const m of src.matchAll(/var\(\s*(--cab-[\w-]+)/g)) if (!knownTokens.has(m[1]!)) unknownTokens.add(m[1]!)
+    const template = templateBlock(src)
     rawControls += (template.match(/<(button|input|select|textarea|dialog)\b/g) ?? []).length
-    hardcodedColors += (block(src, 'style').match(colour) ?? []).length
+    hardcodedColors += (styleBlocks(src).match(colour) ?? []).length
     for (const m of template.matchAll(/\bstyle="([^"]*)"/g)) hardcodedColors += (m[1]!.match(colour) ?? []).length
 
     for (const tag of template.matchAll(/<(Cab[A-Z]\w*)((?:\s+[^\s=>/]+(?:="[^"]*")?)*)\s*\/?>/g)) {
@@ -80,14 +89,28 @@ export function staticScore(dir: string, registry: Registry): StaticScore {
     unknownProps: [...unknownProps].sort(),
     hardcodedColors,
     cabUsages,
+    unknownTokens: [...unknownTokens].sort(),
   }
 }
 
-async function runtimeScore(dir: string): Promise<Pick<Score, 'buildOk' | 'axeViolations' | 'axeRules'>> {
+/** Navigates once the server answers; throws instead of silently scoring a blank page. */
+export async function gotoWhenReady(page: import('playwright').Page, url: string, attempts = 40, delayMs = 250): Promise<void> {
+  for (let i = 0; i < attempts; i++) {
+    try {
+      await page.goto(url, { waitUntil: 'networkidle' })
+      return
+    } catch {
+      await new Promise(r => setTimeout(r, delayMs))
+    }
+  }
+  throw new Error(`Preview server at ${url} never became reachable`)
+}
+
+async function runtimeScore(dir: string): Promise<Pick<Score, 'buildOk' | 'axeViolations' | 'axeRules' | 'judgment'>> {
   try {
     execSync('npm run build', { cwd: dir, stdio: 'pipe' })
   } catch {
-    return { buildOk: false, axeViolations: null, axeRules: [] }
+    return { buildOk: false, axeViolations: null, axeRules: [], judgment: null }
   }
   const port = 4300 + Math.floor(Math.random() * 500)
   const preview = spawn('npx', ['vite', 'preview', '--port', String(port), '--strictPort'], { cwd: dir, stdio: 'ignore' })
@@ -96,16 +119,15 @@ async function runtimeScore(dir: string): Promise<Pick<Score, 'buildOk' | 'axeVi
     const axeSource = readFileSync(fileURLToPath(import.meta.resolve('axe-core/axe.min.js')), 'utf8')
     const browser = await chromium.launch()
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } })
-    for (let i = 0; i < 40; i++) {
-      try { await page.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle' }); break } catch { await new Promise(r => setTimeout(r, 250)) }
-    }
+    await gotoWhenReady(page, `http://localhost:${port}/`)
     await page.screenshot({ path: join(dir, 'screenshot.png'), fullPage: true })
     await page.addScriptTag({ content: axeSource })
     const ids: string[] = await page.evaluate(async () =>
       // @ts-expect-error axe is injected above
       (await window.axe.run(document, { resultTypes: ['violations'] })).violations.map((v: { id: string }) => v.id))
+    const judgment = await judgmentChecks(page)
     await browser.close()
-    return { buildOk: true, axeViolations: ids.length, axeRules: ids }
+    return { buildOk: true, axeViolations: ids.length, axeRules: ids, judgment }
   } finally {
     preview.kill()
   }

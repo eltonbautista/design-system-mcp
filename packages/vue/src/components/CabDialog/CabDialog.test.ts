@@ -116,3 +116,34 @@ test('examples have no axe violations when open', async () => {
     await s.unmount()
   }
 })
+
+test('exit animation plays: still open just after close is requested, closed after the exit duration', async () => {
+  const s = await render(CabDialog, { props: { open: true, title: 'Exit' } })
+  const el = s.container.querySelector('dialog') as HTMLDialogElement
+  await expect.poll(() => el.open).toBe(true)
+  await s.rerender({ open: false })
+  await new Promise(r => setTimeout(r, 60))
+  expect(el.open).toBe(true)
+  expect(el.classList.contains('cab-dialog--closing')).toBe(true)
+  await expect.poll(() => el.open, { timeout: 1000 }).toBe(false)
+})
+
+test('reopening during the exit animation keeps the dialog open', async () => {
+  const s = await render(CabDialog, { props: { open: true, title: 'Race' } })
+  const el = s.container.querySelector('dialog') as HTMLDialogElement
+  await expect.poll(() => el.open).toBe(true)
+  await s.rerender({ open: false })
+  await new Promise(r => setTimeout(r, 30))
+  await s.rerender({ open: true })
+  await new Promise(r => setTimeout(r, 400))
+  expect(el.open).toBe(true)
+  expect(el.classList.contains('cab-dialog--closing')).toBe(false)
+})
+
+test('a native close (e.g. a forced Escape close request) emits update:open false', async () => {
+  const s = await render(CabDialog, { props: { open: true, title: 'Native' } })
+  const el = s.container.querySelector('dialog') as HTMLDialogElement
+  await expect.poll(() => el.open).toBe(true)
+  el.close() // what the browser does when it skips or ignores a cancel event
+  await expect.poll(() => s.emitted('update:open')).toEqual([[false]])
+})

@@ -60,3 +60,15 @@ test('href makes the title a link whose hit area covers the card', async () => {
   expect(after.position).toBe('absolute')
   expect(s.getByRole('heading').element().contains(link.element())).toBe(true)
 })
+
+test('with href, other links and controls inside the card stay clickable above the stretched link', async () => {
+  const s = await render(CabCard, {
+    props: { title: 'Weekend workshop', href: '#card' },
+    slots: { default: () => h('a', { href: '#map' }, 'Venue map'), footer: () => h('input', { 'aria-label': 'Note' }) },
+  })
+  for (const name of ['Venue map', 'Note']) {
+    const el = (name === 'Note' ? s.getByRole('textbox', { name }) : s.getByRole('link', { name })).element()
+    const r = el.getBoundingClientRect()
+    expect(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)).toBe(el)
+  }
+})

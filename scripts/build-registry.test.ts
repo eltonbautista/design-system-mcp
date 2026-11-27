@@ -85,3 +85,9 @@ test('exported interfaces used by props are included verbatim', () => {
   expect(byName('CabTabs').types.join('\n')).toContain('export interface CabTab {')
   expect(byName('CabButton').types).toEqual([])
 })
+
+test('registry carries the one-time setup imports (tokens, fonts, component styles)', () => {
+  expect(registry.setup).toContain("import '@eltonbautista/tokens/tokens.css'")
+  expect(registry.setup).toContain("import '@eltonbautista/tokens/fonts.css'")
+  expect(registry.setup).toContain("import '@eltonbautista/vue/style.css'")
+})

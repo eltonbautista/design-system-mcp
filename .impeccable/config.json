@@ -20,6 +20,42 @@
         ],
         "createdAt": "2026-11-27T13:37:07.610Z",
         "reason": "false positive: Storybook's own minified colour-picker control in generated build output (gitignored), not Cabinet code"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "demo/fixtures/judgment/good.html"
+        ],
+        "createdAt": "2026-11-27T14:18:41.790Z",
+        "reason": "test fixture for the demo scorer's browser checks (bad.html is deliberately broken); not shipped UI"
+      },
+      {
+        "rule": "skipped-heading",
+        "value": "*",
+        "files": [
+          "demo/fixtures/judgment/good.html"
+        ],
+        "createdAt": "2026-11-27T14:18:41.804Z",
+        "reason": "test fixture for the demo scorer's browser checks (bad.html is deliberately broken); not shipped UI"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "demo/fixtures/judgment/bad.html"
+        ],
+        "createdAt": "2026-11-27T14:18:41.817Z",
+        "reason": "test fixture for the demo scorer's browser checks (bad.html is deliberately broken); not shipped UI"
+      },
+      {
+        "rule": "skipped-heading",
+        "value": "*",
+        "files": [
+          "demo/fixtures/judgment/bad.html"
+        ],
+        "createdAt": "2026-11-27T14:18:41.828Z",
+        "reason": "test fixture for the demo scorer's browser checks (bad.html is deliberately broken); not shipped UI"
       }
     ]
   }
