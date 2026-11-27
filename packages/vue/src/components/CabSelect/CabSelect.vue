@@ -152,9 +152,10 @@ watch(() => props.options, () => { if (active.value >= props.options.length) act
 
 <template>
   <div class="cab-field cab-select" :class="{ 'cab-select--open': open }">
-    <span :id="labelId" class="cab-field__label" @click="comboEl?.focus()">{{ label }}</span>
+    <span :id="labelId" class="cab-field__label">{{ label }}</span>
     <p v-if="hint" :id="hintId" class="cab-field__hint">{{ hint }}</p>
     <div class="cab-select__anchor">
+      <!-- eslint-disable-next-line vuejs-accessibility/interactive-supports-focus -- focusable via the bound :tabindex (0 unless disabled) -->
       <div
         ref="comboEl"
         role="combobox"
@@ -187,6 +188,7 @@ watch(() => props.options, () => { if (active.value >= props.options.length) act
         :hidden="!open"
         @mousedown.prevent
       >
+        <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events, vuejs-accessibility/interactive-supports-focus -- APG activedescendant: options are never focused; the combobox handles all keys -->
         <li
           v-for="(o, i) in options"
           :id="optionId(i)"
