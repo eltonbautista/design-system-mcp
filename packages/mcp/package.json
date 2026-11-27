@@ -1,6 +1,6 @@
 {
   "name": "@eltonbautista/mcp",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "MCP server that teaches AI coding assistants the Cabinet Vue components and tokens.",
   "type": "module",
   "bin": {
