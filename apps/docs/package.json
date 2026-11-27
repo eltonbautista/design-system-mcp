@@ -1,0 +1,28 @@
+{
+  "name": "docs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build -o storybook-static",
+    "test": "vitest run",
+    "typecheck": "echo skip"
+  },
+  "devDependencies": {
+    "@cabinet-ds/tokens": "workspace:*",
+    "@cabinet-ds/vue": "workspace:*",
+    "@storybook/addon-a11y": "^10.6.9",
+    "@storybook/addon-docs": "^10.6.9",
+    "@storybook/addon-vitest": "^10.6.9",
+    "@storybook/vue3-vite": "^10.6.9",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vitest/browser-playwright": "^5.1.2",
+    "playwright": "^1.65.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "storybook": "^10.6.9",
+    "vite": "^8.4.0",
+    "vitest": "^5.1.2",
+    "vue": "^3.5.46"
+  }
+}
