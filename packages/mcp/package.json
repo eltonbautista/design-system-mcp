@@ -1,0 +1,34 @@
+{
+  "name": "@cabinet-ds/mcp",
+  "version": "0.0.0",
+  "description": "MCP server that teaches AI coding assistants the Cabinet Vue components and tokens.",
+  "type": "module",
+  "bin": {
+    "cabinet-mcp": "./dist/stdio.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./registry.json": "./dist/registry.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.11",
+    "tsup": "^9.0.0",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.2"
+  }
+}
