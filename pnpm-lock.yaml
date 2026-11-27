@@ -254,6 +254,9 @@ importers:
       '@vitest/browser-playwright':
         specifier: ^5.1.2
         version: 5.1.2(playwright@1.65.1)(vite@8.4.0(@types/node@26.6.11)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1))(vitest@5.1.2)
+      gsap:
+        specifier: ^3.15.1
+        version: 3.15.1
       playwright:
         specifier: ^1.65.1
         version: 1.65.1
@@ -2298,6 +2301,9 @@ packages:
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
+
+  gsap@3.15.1:
+    resolution: {integrity: sha512-63yjWRFWj3QRP1UOuD8kcidCcy3nxb1mMRpwHr/xJRvPfm9GtWOXFAYUiL0ro1fgPq2nY53LR+98pAgy9BumBg==}
 
   has-property-descriptors@1.0.2:
     resolution: {integrity: sha512-55JNKuIW+vq4Ke1BjOTjM2YctQIvCT7GFzHwmfZPGo5wnrgkid0YQtnAleFSqumZm4az3n2BS+erby5ipJdgrg==}
@@ -5420,6 +5426,8 @@ snapshots:
   globals@17.14.0: {}
 
   gopd@1.2.0: {}
+
+  gsap@3.15.1: {}
 
   has-property-descriptors@1.0.2:
     dependencies:
