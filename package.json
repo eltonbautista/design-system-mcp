@@ -13,7 +13,8 @@
     "typecheck": "pnpm -r typecheck",
     "registry": "tsx scripts/build-registry.ts",
     "registry:check": "tsx scripts/build-registry.ts --check",
-    "release": "pnpm build && changeset publish"
+    "release": "pnpm build && changeset publish",
+    "version-packages": "changeset version && pnpm install --lockfile-only && pnpm --filter @eltonbautista/tokens build && pnpm registry"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.3",
