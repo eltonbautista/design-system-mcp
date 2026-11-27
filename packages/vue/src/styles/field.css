@@ -1,0 +1,29 @@
+/* Shared label / hint / error layout for form fields. */
+.cab-field { display: grid; gap: var(--cab-space-2); font-family: var(--cab-font-family-body); color: var(--cab-color-text-default); }
+.cab-field__label { font-size: var(--cab-font-size-md); font-weight: var(--cab-font-weight-bold); }
+.cab-field__required { color: var(--cab-color-action-primary-bg); margin-inline-start: var(--cab-space-1); }
+.cab-field__hint { font-size: var(--cab-font-size-sm); color: var(--cab-color-text-muted); }
+.cab-field__error {
+  display: flex; gap: var(--cab-space-2); align-items: baseline;
+  font-size: var(--cab-font-size-sm); font-weight: var(--cab-font-weight-medium);
+  color: var(--cab-color-danger-text);
+}
+.cab-field__error-icon { flex: none; width: 1em; height: 1em; translate: 0 0.15em; }
+.cab-control {
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 48px;
+  padding: var(--cab-space-3) var(--cab-space-4);
+  border: 2px solid var(--cab-color-border-strong);
+  border-radius: var(--cab-radius-md);
+  background: var(--cab-color-bg-surface);
+  color: var(--cab-color-text-default);
+  font: inherit;
+  font-size: var(--cab-font-size-md);
+  transition: border-color var(--cab-motion-duration-base) var(--cab-motion-easing-standard),
+    box-shadow var(--cab-motion-duration-base) var(--cab-motion-easing-standard);
+}
+.cab-control::placeholder { color: var(--cab-color-text-muted); }
+.cab-control:hover:not(:disabled) { border-color: var(--cab-color-text-default); }
+.cab-control[aria-invalid='true'] { border-color: var(--cab-color-danger-text); }
+.cab-control:disabled { background: var(--cab-color-bg-sunken); color: var(--cab-color-text-muted); cursor: not-allowed; }
