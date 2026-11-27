@@ -42,7 +42,9 @@ defineSlots<{
 const uid = useId()
 const tabId = (t: CabTab) => `${uid}-tab-${t.id}`
 const panelId = (t: CabTab) => `${uid}-panel-${t.id}`
-const tabEls = ref<HTMLElement[]>([])
+const listEl = ref<HTMLElement>()
+// Read tabs from the DOM at keydown: v-for template refs are not kept in source order.
+const tabEls = () => [...(listEl.value?.querySelectorAll<HTMLElement>('[role="tab"]') ?? [])]
 
 const selectedId = computed(() => {
   const hit = props.tabs.find(t => t.id === props.modelValue && !t.disabled)
@@ -60,11 +62,12 @@ async function onKeydown(event: KeyboardEvent) {
   const move = KEYS[event.key]
   if (!move) return
   event.preventDefault()
-  const current = tabEls.value.indexOf(document.activeElement as HTMLElement)
+  const els = tabEls()
+  const current = els.indexOf(document.activeElement as HTMLElement)
   const i = nextEnabledIndex(props.tabs.map(t => !!t.disabled), current, move, true)
   const tab = props.tabs[i]
   if (!tab) return
-  tabEls.value[i]?.focus()
+  els[i]?.focus()
   if (props.activation === 'automatic') {
     select(tab)
     await nextTick()
@@ -75,12 +78,11 @@ async function onKeydown(event: KeyboardEvent) {
 <template>
   <div class="cab-tabs">
     <!-- eslint-disable-next-line vuejs-accessibility/interactive-supports-focus -- APG: the tabs take focus (roving tabindex), not the tablist container -->
-    <div role="tablist" :aria-label="label" class="cab-tabs__list" @keydown="onKeydown">
+    <div ref="listEl" role="tablist" :aria-label="label" class="cab-tabs__list" @keydown="onKeydown">
       <button
         v-for="tab in tabs"
         :id="tabId(tab)"
         :key="tab.id"
-        ref="tabEls"
         type="button"
         role="tab"
         class="cab-tabs__tab cab-focus"

@@ -13,3 +13,6 @@ import { CabButton } from '@eltonbautista/vue'
 <style>
 main { background: rgb(255, 0, 0); }
 </style>
+<style scoped>
+.x { color: var(--cab-color-danger, red); padding: var(--cab-space-4); }
+</style>

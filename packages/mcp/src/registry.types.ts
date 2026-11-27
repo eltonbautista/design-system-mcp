@@ -3,6 +3,8 @@ export interface Registry {
   package: string
   /** Version of that package this registry was generated from. */
   version: string
+  /** One-time imports an app needs before any component renders styled (tokens, fonts, component CSS). */
+  setup: string
   components: ComponentEntry[]
   tokens: TokenEntry[]
 }

@@ -45,17 +45,22 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([t
 const focusables = () => [...(dialogEl.value?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? [])]
   .filter(el => !el.hasAttribute('hidden') && el.getClientRects().length > 0)
 
+/** The exit duration token in ms. Style Dictionary may emit it as "0.2s" or "200ms". */
 function exitMs(): number {
   if (!dialogEl.value) return 0
   const v = getComputedStyle(dialogEl.value).getPropertyValue('--cab-motion-duration-exit').trim()
-  return Number.parseFloat(v) || 0
+  const n = Number.parseFloat(v)
+  if (!Number.isFinite(n)) return 0
+  return v.endsWith('ms') ? n : v.endsWith('s') ? n * 1000 : n
 }
 
 async function show() {
   const el = dialogEl.value
-  if (!el || el.open) return
+  if (!el) return
+  // Reopened during the exit animation: cancel the pending close and stay open.
   clearTimeout(closeTimer)
   closing.value = false
+  if (el.open) return
   returnTo = document.activeElement instanceof HTMLElement ? document.activeElement : null
   el.showModal()
   await nextTick()
@@ -88,6 +93,16 @@ function onCancel(e: Event) {
   requestClose()
 }
 
+function onNativeClose() {
+  // The browser can close a modal without a cancelable `cancel` (e.g. repeated Escape with no user
+  // activation). Keep the parent in sync and still return focus.
+  clearTimeout(closeTimer)
+  closing.value = false
+  if (props.open) emit('update:open', false)
+  if (returnTo?.isConnected) returnTo.focus()
+  returnTo = null
+}
+
 function onClick(e: MouseEvent) {
   // Clicks on the <dialog> element itself (not its content) land on the backdrop area.
   if (e.target === dialogEl.value) requestClose()
@@ -118,6 +133,7 @@ onBeforeUnmount(() => {
     :aria-labelledby="titleId"
     :aria-describedby="description ? descId : undefined"
     @cancel="onCancel"
+    @close="onNativeClose"
     @click="onClick"
     @keydown="onKeydown"
   >
