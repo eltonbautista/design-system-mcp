@@ -1,0 +1,5 @@
+{
+  "mcpServers": {
+    "cabinet": { "command": "npx", "args": ["-y", "@cabinet-ds/mcp"] }
+  }
+}
