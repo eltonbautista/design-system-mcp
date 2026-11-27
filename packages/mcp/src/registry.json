@@ -1,0 +1,903 @@
+{
+  "package": "@cabinet-ds/vue",
+  "version": "0.0.0",
+  "components": [
+    {
+      "name": "CabButton",
+      "import": "import { CabButton } from '@cabinet-ds/vue'",
+      "description": "An arcade-style button with a glossy face that presses into its coloured base. Renders a native `<button>`; use it for actions, not navigation.",
+      "props": [
+        {
+          "name": "variant",
+          "type": "\"primary\" | \"secondary\" | \"ghost\"",
+          "required": false,
+          "default": "\"primary\"",
+          "description": "Visual weight. `primary` is the one main action on a view; `secondary` supports it; `ghost` is low emphasis."
+        },
+        {
+          "name": "size",
+          "type": "\"md\" | \"sm\" | \"lg\"",
+          "required": false,
+          "default": "\"md\"",
+          "description": "Control size."
+        },
+        {
+          "name": "type",
+          "type": "\"button\" | \"submit\" | \"reset\"",
+          "required": false,
+          "default": "\"button\"",
+          "description": "Native button type. Defaults to `button` so it never submits a form by accident."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Disables the button using the native `disabled` attribute."
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Shows a spinner, sets `aria-busy`, and ignores clicks while staying focusable."
+        }
+      ],
+      "events": [
+        {
+          "name": "click",
+          "type": "[event: MouseEvent]",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "type": "{}",
+          "description": ""
+        }
+      ],
+      "a11y": {
+        "summary": "An arcade-style button for actions. The glossy face presses down into its coloured base when activated. Use `primary` for the single main action on a view, `secondary` for supporting actions, and `ghost` for low-emphasis ones. Use a link, not a button, for navigation.",
+        "pattern": "[WAI-ARIA APG: Button](https://www.w3.org/WAI/ARIA/apg/patterns/button/). Rendered as a native `<button>`, so role, focus and activation come from the browser.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to and from the button. |\n| Enter | Activates the button. |\n| Space | Activates the button. |",
+        "focus": "A 3px purple ring (`--cab-color-focus-ring`) with a 3px offset appears on keyboard focus only (`:focus-visible`). A `loading` button stays focusable so focus is never lost mid-action; a `disabled` button is removed from the tab order by the browser.",
+        "screenReader": "Announced as \"*label*, button\". While `loading`, `aria-busy=\"true\"` is set and the spinner is hidden from assistive tech, so the label stays the accessible name. Disabled buttons are announced as dimmed/unavailable. Icon-only buttons are not supported: always give the button visible text."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A primary action button.",
+          "code": "<!-- A primary action button. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <CabButton @click=\"() => {}\">Book a seat</CabButton>\n</template>\n"
+        },
+        {
+          "name": "Variants",
+          "description": "All three variants, plus loading and disabled states.",
+          "code": "<!-- All three variants, plus loading and disabled states. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"display: flex; flex-wrap: wrap; gap: var(--cab-space-4); align-items: center\">\n    <CabButton variant=\"primary\">Book a seat</CabButton>\n    <CabButton variant=\"secondary\">Add to calendar</CabButton>\n    <CabButton variant=\"ghost\">Maybe later</CabButton>\n    <CabButton loading>Saving</CabButton>\n    <CabButton disabled>Sold out</CabButton>\n  </div>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabCard",
+      "import": "import { CabCard } from '@cabinet-ds/vue'",
+      "description": "A content container with a soft ledge, for grouping a title, media, text and actions. Not interactive by itself; pass `href` to make the whole card a link through its title.",
+      "props": [
+        {
+          "name": "as",
+          "type": "\"article\" | \"section\" | \"div\"",
+          "required": false,
+          "default": "\"article\"",
+          "description": "Element to render. `article` for self-contained content (default), `section` or `div` otherwise."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "description": "Card title, rendered as a heading."
+        },
+        {
+          "name": "headingLevel",
+          "type": "2 | 3 | 4",
+          "required": false,
+          "default": "3",
+          "description": "Heading level for the title, to fit the page outline."
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "description": "Makes the title a link and stretches its hit area over the whole card."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "media",
+          "type": "any",
+          "description": "Image or illustration above the content. Give images meaningful `alt` text, or `alt=\"\"` if decorative."
+        },
+        {
+          "name": "default",
+          "type": "any",
+          "description": "Body content."
+        },
+        {
+          "name": "footer",
+          "type": "any",
+          "description": "Actions or meta row at the bottom."
+        }
+      ],
+      "a11y": {
+        "summary": "A container with a soft ledge for grouping related content: a title, optional media, text and actions. Cards aren't interactive by themselves. To make a whole card open something, pass `href`: the title becomes a link whose hit area covers the card, so there is still exactly one link to tab to and one name to announce. Don't nest cards.",
+        "pattern": "No ARIA widget pattern: semantic HTML. Rendered as `<article>` by default (self-contained content), labelled by its title. Use `as=\"section\"` for a titled region of a page, or `as=\"div\"` when the card is purely visual. The whole-card link uses the [stretched link technique](https://inclusive-components.design/cards/) rather than wrapping everything in `<a>`, which would make screen readers read the entire card as the link name.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves through interactive content inside the card (and the title link when `href` is set). The card itself is not a tab stop. |\n| Enter | Follows the title link when `href` is set. |",
+        "focus": "With `href`, the 3px purple focus ring is drawn around the whole card while its title link has keyboard focus (`:has(:focus-visible)`), matching the clickable area. Without `href`, only the controls inside the card take focus.",
+        "screenReader": "An article is announced with its title as the name, and the title is a heading at `headingLevel` (default 3) so cards appear in the page's heading outline. With `href`, the link's name is just the title, not the whole card's text. Give `media` images real `alt` text, or `alt=\"\"` when decorative."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A content card with a tag, body text and an action.",
+          "code": "<!-- A content card with a tag, body text and an action. -->\n<script setup lang=\"ts\">\nimport { CabButton, CabCard } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"max-width: 360px\">\n    <CabCard title=\"Weekend game jam\" :heading-level=\"2\">\n      <p>Two days of prototyping, playtesting and pizza. No experience needed.</p>\n      <template #footer>\n        <CabButton size=\"sm\">Save a seat</CabButton>\n        <span style=\"color: var(--cab-color-text-muted); font-size: var(--cab-font-size-sm)\">12 seats left</span>\n      </template>\n    </CabCard>\n  </div>\n</template>\n"
+        },
+        {
+          "name": "Clickable",
+          "description": "A whole card that links somewhere, using href (stretched title link).",
+          "code": "<!-- A whole card that links somewhere, using href (stretched title link). -->\n<script setup lang=\"ts\">\nimport { CabCard } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-5); grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width: 760px\">\n    <CabCard title=\"Board game design\" href=\"#board\" :heading-level=\"2\">\n      <p>Cards, dice and rules that fit on one page.</p>\n    </CabCard>\n    <CabCard title=\"Digital prototyping\" href=\"#digital\" :heading-level=\"2\">\n      <p>Make something playable in a browser by Sunday.</p>\n    </CabCard>\n  </div>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabCheckbox",
+      "import": "import { CabCheckbox } from '@cabinet-ds/vue'",
+      "description": "A checkbox for a yes/no choice that is confirmed later (e.g. on form submit). Native `<input type=\"checkbox\">` with a chunky custom box; native semantics are kept.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": true,
+          "description": "Checked state (use `v-model`)."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Visible label. Clicking it toggles the checkbox."
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "required": false,
+          "description": "Helper text linked with `aria-describedby`."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Disables the checkbox."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "type": "[value: boolean]",
+          "description": ""
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "summary": "A checkbox for an independent yes/no choice that takes effect later, usually when a form is submitted. For a setting that applies immediately, use `CabSwitch`. Group related checkboxes in a `<fieldset>` with a `<legend>`.",
+        "pattern": "[WAI-ARIA APG: Checkbox](https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/), built on a native `<input type=\"checkbox\">` so role, state and form submission come from the browser. The visible box is decorative and hidden from assistive tech.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to and from the checkbox. |\n| Space | Toggles checked state. |",
+        "focus": "The 3px purple focus ring is drawn around the visible box (not the hidden input) on keyboard focus. The whole label is a click target, which gives a target well above 24×24px.",
+        "screenReader": "Announced as \"*label*, checkbox, checked/not checked\". The hint is linked with `aria-describedby`. The component is controlled: the checked state shown always matches `modelValue`, so a parent that rejects a change never leaves the box out of sync."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A single checkbox bound with v-model.",
+          "code": "<!-- A single checkbox bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@cabinet-ds/vue'\n\nconst agreed = ref(false)\n</script>\n\n<template>\n  <CabCheckbox v-model=\"agreed\" label=\"I agree to the code of conduct\" />\n</template>\n"
+        },
+        {
+          "name": "WithHint",
+          "description": "A group of checkboxes inside a fieldset, one with a hint.",
+          "code": "<!-- A group of checkboxes inside a fieldset, one with a hint. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@cabinet-ds/vue'\n\nconst lunch = ref(true)\nconst parking = ref(false)\n</script>\n\n<template>\n  <fieldset style=\"border: 0; padding: 0; margin: 0; display: grid; gap: var(--cab-space-3)\">\n    <legend style=\"font-weight: var(--cab-font-weight-bold); margin-block-end: var(--cab-space-3)\">Extras</legend>\n    <CabCheckbox v-model=\"lunch\" label=\"Lunch on both days\" hint=\"Vegetarian and vegan options included.\" />\n    <CabCheckbox v-model=\"parking\" label=\"Parking pass\" />\n  </fieldset>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabDialog",
+      "import": "import { CabDialog } from '@cabinet-ds/vue'",
+      "description": "A modal dialog for a short, focused task or a confirmation that must be answered before continuing. Built on the native `<dialog>` with `showModal()`, so the page behind it is inert.",
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": true,
+          "description": "Whether the dialog is open (use `v-model:open`)."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "description": "Visible title; also the dialog's accessible name."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "description": "Optional one-line description, announced after the title."
+        },
+        {
+          "name": "closeLabel",
+          "type": "string",
+          "required": false,
+          "default": "\"Close\"",
+          "description": "Accessible name of the close button."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:open",
+          "type": "[value: boolean]",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "type": "any",
+          "description": "Dialog body. The first focusable element here receives focus on open."
+        },
+        {
+          "name": "footer",
+          "type": "any",
+          "description": "Actions row, e.g. Cancel and Confirm buttons."
+        }
+      ],
+      "a11y": {
+        "summary": "A modal dialog for a short task or a decision that must be made before going back to the page, like confirming a booking. Don't use it for content people may want to read alongside the page. Keep it short: a title, a sentence or a small form, and one or two actions.",
+        "pattern": "[WAI-ARIA APG: Dialog (Modal)](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/). Built on the native `<dialog>` opened with `showModal()`, which makes the rest of the page inert for free: it can't be clicked, focused or read while the dialog is open. Named by its title (`aria-labelledby`) and described by `description` (`aria-describedby`).",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves between focusable elements inside the dialog, wrapping from last to first and first to last. |\n| Escape | Closes the dialog (emits `update:open` `false`). |\n| Enter / Space | Activates the focused button. |",
+        "focus": "On open, focus moves to the first focusable element in the body; if there is none, it goes to the close button. Focus stays inside while the dialog is open. On close, focus returns to the element that opened it, or stays safely on the page if that element has since been removed. The close button and actions show the 3px purple focus ring.",
+        "screenReader": "Announced as \"*title*, dialog\", followed by the description. The close button has a visually hidden text label (`closeLabel`, default \"Close\") and its icon is hidden from assistive tech. With reduced motion, the dialog fades instead of rising and scaling."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A dialog opened from a button, with a form field and actions.",
+          "code": "<!-- A dialog opened from a button, with a form field and actions. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog, CabTextField } from '@cabinet-ds/vue'\n\nconst open = ref(false)\nconst name = ref('')\n</script>\n\n<template>\n  <CabButton @click=\"open = true\">Save my seat</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Save your seat?\" description=\"We'll hold it for 24 hours.\">\n    <CabTextField v-model=\"name\" label=\"Name on the badge\" autocomplete=\"name\" />\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Cancel</CabButton>\n      <CabButton @click=\"open = false\">Hold my seat</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
+        },
+        {
+          "name": "Confirm",
+          "description": "A confirmation with no form fields; focus starts on the first action.",
+          "code": "<!-- A confirmation with no form fields; focus starts on the first action. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog } from '@cabinet-ds/vue'\n\nconst open = ref(false)\n</script>\n\n<template>\n  <CabButton variant=\"secondary\" @click=\"open = true\">Leave the waitlist</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Leave the waitlist?\">\n    <p style=\"margin: 0\">You'll lose your place. You can join again later, at the back of the queue.</p>\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Stay on it</CabButton>\n      <CabButton @click=\"open = false\">Leave waitlist</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabSelect",
+      "import": "import { CabSelect } from '@cabinet-ds/vue'",
+      "description": "A select-only combobox: pick one value from a short list of options. Follows the APG \"Select-Only Combobox\" pattern; focus never leaves the combobox.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "string | null",
+          "required": true,
+          "description": "Selected value (use `v-model`). `null` shows the placeholder."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Visible label."
+        },
+        {
+          "name": "options",
+          "type": "CabSelectOption[]",
+          "required": true,
+          "description": "The options, in display order."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "default": "\"Select…\"",
+          "description": "Text shown when nothing is selected."
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "required": false,
+          "description": "Helper text linked with `aria-describedby`."
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "description": "Error message; marks the combobox invalid and is announced."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Disables the select."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "type": "[value: string]",
+          "description": ""
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "summary": "Choose one value from a short list (roughly 3 to 15 options). Use it when the options don't fit comfortably as radio buttons. For long or searchable lists, a different pattern is needed. The label is always visible; the placeholder only says nothing is selected yet.",
+        "pattern": "[WAI-ARIA APG: Select-Only Combobox](https://www.w3.org/WAI/ARIA/apg/patterns/combobox/examples/combobox-select-only/). A `role=\"combobox\"` element controls a `role=\"listbox\"` popup. DOM focus never leaves the combobox; the highlighted option is conveyed with `aria-activedescendant`.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| ↓ / ↑ / Enter / Space / Alt+↓ | Opens the list on the selected option (or the first option). |\n| Home / End | Opens the list on the first / last option. |\n| ↓ / ↑ (open) | Moves to the next / previous option, skipping disabled ones. Stops at the ends. |\n| Home / End (open) | Moves to the first / last option. |\n| Page Down / Page Up (open) | Moves 10 options. |\n| Enter / Space / Alt+↑ (open) | Selects the highlighted option and closes. |\n| Tab (open) | Selects the highlighted option, closes, and moves focus on. |\n| Escape (open) | Closes without changing the value. |\n| Letters | Opens the list and jumps to the next option starting with the typed text (500ms buffer). |",
+        "focus": "The combobox shows the 3px purple focus ring. Inside the open list, the highlighted option gets a purple inset outline and a tinted background, so it's visible without relying on colour alone. Clicking an option returns focus to the combobox. Clicking elsewhere closes the list.",
+        "screenReader": "Announced as \"*label*, combobox, collapsed, *selected value*\". When open, each highlighted option is read as \"*option*, selected/not selected, 2 of 4\". Disabled options stay in the list with `aria-disabled=\"true\"` so people know they exist. Hint and error are linked with `aria-describedby`, and errors set `aria-invalid`."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A select bound with v-model, with a hint and a disabled option.",
+          "code": "<!-- A select bound with v-model, with a hint and a disabled option. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@cabinet-ds/vue'\n\nconst level = ref<string | null>(null)\nconst options = [\n  { value: 'new', label: 'New to game design' },\n  { value: 'hobby', label: 'Hobbyist' },\n  { value: 'student', label: 'Student (waitlist only)', disabled: true },\n  { value: 'pro', label: 'Professional' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"level\" label=\"Experience level\" :options=\"options\" hint=\"Helps us pair you with a teammate.\" />\n  </div>\n</template>\n"
+        },
+        {
+          "name": "WithError",
+          "description": "A required select showing a validation error.",
+          "code": "<!-- A required select showing a validation error. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@cabinet-ds/vue'\n\nconst track = ref<string | null>(null)\nconst options = [\n  { value: 'board', label: 'Board games' },\n  { value: 'digital', label: 'Digital games' },\n  { value: 'larp', label: 'Live-action' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"track\" label=\"Track\" :options=\"options\" error=\"Choose a track so we can save you a seat.\" />\n  </div>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabSwitch",
+      "import": "import { CabSwitch } from '@cabinet-ds/vue'",
+      "description": "An on/off switch for a setting that takes effect immediately. A `<button role=\"switch\">` labelled by a native `<label>`.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": true,
+          "description": "On/off state (use `v-model`)."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Visible label naming the setting, e.g. \"Email reminders\"."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Disables the switch."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "type": "[value: boolean]",
+          "description": ""
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "summary": "An on/off switch for a setting that takes effect immediately, like turning on reminders. If the choice is only applied when a form is submitted, use `CabCheckbox` instead: a switch promises an instant result.",
+        "pattern": "[WAI-ARIA APG: Switch](https://www.w3.org/WAI/ARIA/apg/patterns/switch/). A native `<button role=\"switch\">` with `aria-checked`, labelled by a native `<label for>` so clicking the text also toggles it.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to and from the switch. |\n| Space | Toggles on/off. |\n| Enter | Toggles on/off. |",
+        "focus": "A 3px purple ring with a 3px offset around the track on keyboard focus. On/off is shown three ways: thumb position, track colour, and thumb colour, so it never depends on colour alone.",
+        "screenReader": "Announced as \"*label*, switch, on/off\". With reduced motion, the thumb jumps instead of sliding; colour still changes so the state is just as clear."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A switch bound with v-model.",
+          "code": "<!-- A switch bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@cabinet-ds/vue'\n\nconst reminders = ref(true)\n</script>\n\n<template>\n  <CabSwitch v-model=\"reminders\" label=\"Workshop reminders\" />\n</template>\n"
+        },
+        {
+          "name": "Settings",
+          "description": "A short list of instant settings, one disabled.",
+          "code": "<!-- A short list of instant settings, one disabled. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@cabinet-ds/vue'\n\nconst newsletter = ref(false)\nconst sounds = ref(true)\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-4); justify-items: start\">\n    <CabSwitch v-model=\"newsletter\" label=\"Monthly newsletter\" />\n    <CabSwitch v-model=\"sounds\" label=\"Arcade sounds\" />\n    <CabSwitch :model-value=\"false\" label=\"Live captions (coming soon)\" disabled />\n  </div>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabTabs",
+      "import": "import { CabTabs } from '@cabinet-ds/vue'",
+      "description": "Tabs that switch between related panels of content in place. Follows the APG Tabs pattern with roving tabindex and automatic or manual activation.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "description": "The selected tab's id (use `v-model`). Falls back to the first enabled tab if missing or disabled."
+        },
+        {
+          "name": "tabs",
+          "type": "CabTab[]",
+          "required": true,
+          "description": "The tabs, in order."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Accessible name for the tab list, e.g. \"Workshop details\"."
+        },
+        {
+          "name": "activation",
+          "type": "\"automatic\" | \"manual\"",
+          "required": false,
+          "default": "\"automatic\"",
+          "description": "`automatic` selects a tab as soon as it gets focus; `manual` waits for Enter or Space."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "type": "[id: string]",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "panel",
+          "type": "{ tab: CabTab; }",
+          "description": "Content for each tab's panel. Rendered once per tab; only the selected panel is visible."
+        }
+      ],
+      "a11y": {
+        "summary": "Tabs switch between related panels of content in the same place, like a workshop's schedule, venue and FAQ. Use them for peer content a person might compare, not for steps in a process or for site navigation.",
+        "pattern": "[WAI-ARIA APG: Tabs](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) with roving tabindex. `role=\"tablist\"` is named by the `label` prop; each `role=\"tab\"` controls its `role=\"tabpanel\"`, and each panel is labelled by its tab. Activation is automatic by default (selection follows focus); set `activation=\"manual\"` when showing a panel is slow or expensive.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab | Moves focus into the tab list (to the selected tab), then to the panel. |\n| → / ← | Moves to the next / previous tab, wrapping at the ends. Disabled tabs are skipped. |\n| Home / End | Moves to the first / last enabled tab. |\n| Enter / Space | Selects the focused tab (manual activation). |",
+        "focus": "Only the selected tab is in the tab order (`tabindex=\"0\"`); the others are `-1` and reached with the arrow keys. Panels are focusable (`tabindex=\"0\"`) so keyboard users can reach panels without interactive content. Both show the 3px purple focus ring. If `modelValue` is unknown or points at a disabled tab, the first enabled tab is selected so focus always has somewhere to land.",
+        "screenReader": "Announced as \"*label*, tab, selected, 1 of 3\". Disabled tabs carry `aria-disabled=\"true\"` and stay visible so people know the option exists. Inactive panels use the `hidden` attribute and are not read."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "Three tabs with automatic activation (selection follows focus).",
+          "code": "<!-- Three tabs with automatic activation (selection follows focus). -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@cabinet-ds/vue'\n\nconst tab = ref('schedule')\nconst tabs = [\n  { id: 'schedule', label: 'Schedule' },\n  { id: 'venue', label: 'Venue' },\n  { id: 'faq', label: 'FAQ' },\n]\nconst copy: Record<string, string> = {\n  schedule: 'Saturday 10:00 to 17:00: prototyping. Sunday 10:00 to 15:00: playtests and demos.',\n  venue: 'The Old Arcade, 12 Pinball Lane. Step-free entrance on the east side.',\n  faq: 'Bring a laptop if you have one. Paper prototyping kits are provided.',\n}\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop details\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">{{ copy[t.id] }}</p>\n    </template>\n  </CabTabs>\n</template>\n"
+        },
+        {
+          "name": "Manual",
+          "description": "Manual activation (arrows move focus, Enter or Space selects) and a disabled tab.",
+          "code": "<!-- Manual activation (arrows move focus, Enter or Space selects) and a disabled tab. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@cabinet-ds/vue'\n\nconst tab = ref('day1')\nconst tabs = [\n  { id: 'day1', label: 'Day 1' },\n  { id: 'day2', label: 'Day 2' },\n  { id: 'day3', label: 'Day 3 (sold out)', disabled: true },\n]\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop days\" activation=\"manual\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">Sessions for {{ t.label }}.</p>\n    </template>\n  </CabTabs>\n</template>\n"
+        }
+      ]
+    },
+    {
+      "name": "CabTextField",
+      "import": "import { CabTextField } from '@cabinet-ds/vue'",
+      "description": "A single-line text input with a visible label, optional hint and an error message. Errors are announced through `aria-describedby` and marked with `aria-invalid`.",
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": true,
+          "description": "Current value (use `v-model`)."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "description": "Visible label. Required: placeholders are not labels."
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "required": false,
+          "description": "Helper text shown under the label and announced after it."
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "description": "Error message. When set, the field is marked invalid and the message is announced."
+        },
+        {
+          "name": "type",
+          "type": "\"text\" | \"email\" | \"password\" | \"tel\" | \"url\" | \"search\"",
+          "required": false,
+          "default": "\"text\"",
+          "description": "Native input type."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Marks the field required (native `required` plus a visual asterisk)."
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Disables the field."
+        },
+        {
+          "name": "autocomplete",
+          "type": "string",
+          "required": false,
+          "description": "Native `autocomplete` token, e.g. `email` or `name`."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "description": "Placeholder example text. Never a substitute for `label` or `hint`."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "type": "[value: string]",
+          "description": ""
+        }
+      ],
+      "slots": [],
+      "a11y": {
+        "summary": "A single-line text input with a visible label, optional hint and error message. Use it for short free text such as names and email addresses. The label is always visible; placeholders are only for example values.",
+        "pattern": "Native `<input>` with a `<label for>` association. Hint and error follow the [WAI form instructions](https://www.w3.org/WAI/tutorials/forms/instructions/) and [validation](https://www.w3.org/WAI/tutorials/forms/notifications/) guidance.",
+        "keyboard": "| Key | Action |\n| --- | --- |\n| Tab / Shift+Tab | Moves focus to and from the field. |\n| Any character | Edits the value. |",
+        "focus": "A 3px purple ring with a 3px offset on keyboard focus. The border also darkens on hover. Invalid fields keep a red border and add a drawn warning icon, so colour is never the only signal.",
+        "screenReader": "Announced as \"*label*, edit text\", plus \"required\" and \"invalid entry\" when they apply. The hint and the error are linked with `aria-describedby` (hint first, then error), so both are read after the label. The required asterisk is hidden from assistive tech because the native `required` attribute already announces it."
+      },
+      "examples": [
+        {
+          "name": "Basic",
+          "description": "A labelled text field bound with v-model.",
+          "code": "<!-- A labelled text field bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst name = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"name\" label=\"Your name\" autocomplete=\"name\" />\n</template>\n"
+        },
+        {
+          "name": "WithError",
+          "description": "Showing a validation error that names the problem and the fix.",
+          "code": "<!-- Showing a validation error that names the problem and the fix. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst email = ref('pixel@')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" error=\"Add the part after @, like pixel@example.com.\" />\n</template>\n"
+        },
+        {
+          "name": "WithHint",
+          "description": "A required email field with hint text.",
+          "code": "<!-- A required email field with hint text. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst email = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" autocomplete=\"email\" required hint=\"We only use it to send your ticket.\" />\n</template>\n"
+        }
+      ]
+    }
+  ],
+  "tokens": [
+    {
+      "name": "color.bg.canvas",
+      "cssVar": "--cab-color-bg-canvas",
+      "value": "#fff6ec",
+      "type": "color",
+      "description": "Page background: warm cream."
+    },
+    {
+      "name": "color.bg.surface",
+      "cssVar": "--cab-color-bg-surface",
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Cards, fields, menus."
+    },
+    {
+      "name": "color.bg.sunken",
+      "cssVar": "--cab-color-bg-sunken",
+      "value": "#f6e8d8",
+      "type": "color",
+      "description": "Inset areas, inactive chips, tracks."
+    },
+    {
+      "name": "color.text.default",
+      "cssVar": "--cab-color-text-default",
+      "value": "#24163f",
+      "type": "color",
+      "description": "Body and heading text."
+    },
+    {
+      "name": "color.text.muted",
+      "cssVar": "--cab-color-text-muted",
+      "value": "#6e5f86",
+      "type": "color",
+      "description": "Secondary text, hints."
+    },
+    {
+      "name": "color.text.on-primary",
+      "cssVar": "--cab-color-text-on-primary",
+      "value": "#ffffff",
+      "type": "color",
+      "description": "Text on primary action and active state."
+    },
+    {
+      "name": "color.text.on-secondary",
+      "cssVar": "--cab-color-text-on-secondary",
+      "value": "#24163f",
+      "type": "color",
+      "description": "Text on secondary action."
+    },
+    {
+      "name": "color.action.primary.bg",
+      "cssVar": "--cab-color-action-primary-bg",
+      "value": "#d6146a",
+      "type": "color",
+      "description": "Primary button face (candy pink, AA with white text)."
+    },
+    {
+      "name": "color.action.primary.base",
+      "cssVar": "--cab-color-action-primary-base",
+      "value": "#8e0b45",
+      "type": "color",
+      "description": "Coloured base the primary button presses into."
+    },
+    {
+      "name": "color.action.secondary.bg",
+      "cssVar": "--cab-color-action-secondary-bg",
+      "value": "#2dd4e8",
+      "type": "color",
+      "description": "Secondary button face (cyan)."
+    },
+    {
+      "name": "color.action.secondary.base",
+      "cssVar": "--cab-color-action-secondary-base",
+      "value": "#138a99",
+      "type": "color",
+      "description": "Coloured base under the secondary button."
+    },
+    {
+      "name": "color.state.active.bg",
+      "cssVar": "--cab-color-state-active-bg",
+      "value": "#6c2bd9",
+      "type": "color",
+      "description": "Selected/active state: active tab, checked switch."
+    },
+    {
+      "name": "color.state.active.base",
+      "cssVar": "--cab-color-state-active-base",
+      "value": "#3f1488",
+      "type": "color",
+      "description": "Ledge under active elements."
+    },
+    {
+      "name": "color.highlight.bg",
+      "cssVar": "--cab-color-highlight-bg",
+      "value": "#ffe14d",
+      "type": "color",
+      "description": "Tags, highlights, switch thumb."
+    },
+    {
+      "name": "color.highlight.base",
+      "cssVar": "--cab-color-highlight-base",
+      "value": "#c9a800",
+      "type": "color",
+      "description": "Ledge under highlight elements."
+    },
+    {
+      "name": "color.focus.ring",
+      "cssVar": "--cab-color-focus-ring",
+      "value": "#6c2bd9",
+      "type": "color",
+      "description": "Keyboard focus outline (3px, 3px offset)."
+    },
+    {
+      "name": "color.border.default",
+      "cssVar": "--cab-color-border-default",
+      "value": "#ead9c6",
+      "type": "color",
+      "description": "Decorative borders (not for control boundaries)."
+    },
+    {
+      "name": "color.border.strong",
+      "cssVar": "--cab-color-border-strong",
+      "value": "#6e5f86",
+      "type": "color",
+      "description": "Control boundaries: fields, checkboxes (3:1)."
+    },
+    {
+      "name": "color.danger.text",
+      "cssVar": "--cab-color-danger-text",
+      "value": "#b4002a",
+      "type": "color",
+      "description": "Error messages and invalid borders."
+    },
+    {
+      "name": "color.shadow.ledge",
+      "cssVar": "--cab-color-shadow-ledge",
+      "value": "#f0dcc6",
+      "type": "color",
+      "description": "Soft ledge under cards."
+    },
+    {
+      "name": "space.1",
+      "cssVar": "--cab-space-1",
+      "value": "4px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.2",
+      "cssVar": "--cab-space-2",
+      "value": "8px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.3",
+      "cssVar": "--cab-space-3",
+      "value": "12px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.4",
+      "cssVar": "--cab-space-4",
+      "value": "16px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.5",
+      "cssVar": "--cab-space-5",
+      "value": "20px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.6",
+      "cssVar": "--cab-space-6",
+      "value": "24px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.7",
+      "cssVar": "--cab-space-7",
+      "value": "32px",
+      "type": "dimension"
+    },
+    {
+      "name": "space.8",
+      "cssVar": "--cab-space-8",
+      "value": "40px",
+      "type": "dimension"
+    },
+    {
+      "name": "radius.sm",
+      "cssVar": "--cab-radius-sm",
+      "value": "10px",
+      "type": "dimension"
+    },
+    {
+      "name": "radius.md",
+      "cssVar": "--cab-radius-md",
+      "value": "14px",
+      "type": "dimension"
+    },
+    {
+      "name": "radius.lg",
+      "cssVar": "--cab-radius-lg",
+      "value": "20px",
+      "type": "dimension"
+    },
+    {
+      "name": "radius.pill",
+      "cssVar": "--cab-radius-pill",
+      "value": "999px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.family.display",
+      "cssVar": "--cab-font-family-display",
+      "value": "'Sora Variable', sans-serif",
+      "type": "fontFamily",
+      "description": "Headings and display text."
+    },
+    {
+      "name": "font.family.body",
+      "cssVar": "--cab-font-family-body",
+      "value": "'Outfit Variable', sans-serif",
+      "type": "fontFamily",
+      "description": "Interface and body text."
+    },
+    {
+      "name": "font.size.sm",
+      "cssVar": "--cab-font-size-sm",
+      "value": "14px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.size.md",
+      "cssVar": "--cab-font-size-md",
+      "value": "16px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.size.lg",
+      "cssVar": "--cab-font-size-lg",
+      "value": "18px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.size.xl",
+      "cssVar": "--cab-font-size-xl",
+      "value": "22px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.size.2xl",
+      "cssVar": "--cab-font-size-2xl",
+      "value": "28px",
+      "type": "dimension"
+    },
+    {
+      "name": "font.weight.regular",
+      "cssVar": "--cab-font-weight-regular",
+      "value": "400",
+      "type": "fontWeight"
+    },
+    {
+      "name": "font.weight.medium",
+      "cssVar": "--cab-font-weight-medium",
+      "value": "500",
+      "type": "fontWeight"
+    },
+    {
+      "name": "font.weight.bold",
+      "cssVar": "--cab-font-weight-bold",
+      "value": "700",
+      "type": "fontWeight"
+    },
+    {
+      "name": "font.weight.heavy",
+      "cssVar": "--cab-font-weight-heavy",
+      "value": "800",
+      "type": "fontWeight"
+    },
+    {
+      "name": "motion.duration.instant",
+      "cssVar": "--cab-motion-duration-instant",
+      "value": "0.12s",
+      "type": "duration",
+      "description": "Presses and immediate feedback."
+    },
+    {
+      "name": "motion.duration.base",
+      "cssVar": "--cab-motion-duration-base",
+      "value": "0.2s",
+      "type": "duration",
+      "description": "Routine state changes: tabs, switches."
+    },
+    {
+      "name": "motion.duration.overlay",
+      "cssVar": "--cab-motion-duration-overlay",
+      "value": "0.3s",
+      "type": "duration",
+      "description": "Dialog enter."
+    },
+    {
+      "name": "motion.duration.exit",
+      "cssVar": "--cab-motion-duration-exit",
+      "value": "0.2s",
+      "type": "duration",
+      "description": "Dialog exit (faster than enter)."
+    },
+    {
+      "name": "motion.easing.standard",
+      "cssVar": "--cab-motion-easing-standard",
+      "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "type": "cubicBezier",
+      "description": "The one easing curve. No bounce."
+    },
+    {
+      "name": "motion.distance.press",
+      "cssVar": "--cab-motion-distance-press",
+      "value": "4px",
+      "type": "dimension",
+      "description": "How far a button presses into its base. 0px under prefers-reduced-motion."
+    },
+    {
+      "name": "shadow.ledge",
+      "cssVar": "--cab-shadow-ledge",
+      "value": "0px 6px 0px 0px #f0dcc6",
+      "type": "shadow",
+      "description": "Soft ledge under cards."
+    }
+  ]
+}
