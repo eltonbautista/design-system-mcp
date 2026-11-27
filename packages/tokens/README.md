@@ -1,11 +1,11 @@
-# @cabinet-ds/tokens
+# @eltonbautista/tokens
 
 Design tokens for Cabinet, built with Style Dictionary from DTCG JSON (exported from Figma variables).
 
 ```ts
-import '@cabinet-ds/tokens/tokens.css'          // :root { --cab-color-action-primary-bg: … }
-import { tokens } from '@cabinet-ds/tokens'     // { 'cab-color-action-primary-bg': '#d6146a', … }
-import list from '@cabinet-ds/tokens/tokens.json' // [{ name, cssVar, value, type, description }]
+import '@eltonbautista/tokens/tokens.css'          // :root { --cab-color-action-primary-bg: … }
+import { tokens } from '@eltonbautista/tokens'     // { 'cab-color-action-primary-bg': '#d6146a', … }
+import list from '@eltonbautista/tokens/tokens.json' // [{ name, cssVar, value, type, description }]
 ```
 
 - **Semantic names only:** `color.action.primary.bg`, `space.4`, `radius.lg`, `motion.duration.base` and so on.

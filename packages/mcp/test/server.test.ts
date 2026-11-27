@@ -30,7 +30,7 @@ test('server reports its name', async () => {
 test('list_components returns 8 entries with name, description and import', async () => {
   const list = json(await call(await connect(), 'list_components'))
   expect(list).toHaveLength(8)
-  expect(list[0]).toEqual({ name: 'CabButton', description: expect.any(String), import: "import { CabButton } from '@cabinet-ds/vue'" })
+  expect(list[0]).toEqual({ name: 'CabButton', description: expect.any(String), import: "import { CabButton } from '@eltonbautista/vue'" })
 })
 
 test('get_component resolves "button", "Button", "CabButton" identically', async () => {
@@ -82,7 +82,7 @@ test('get_usage_example defaults to the first example', async () => {
   const ex = json(await call(await connect(), 'get_usage_example', { name: 'CabTabs' }))
   expect(ex.component).toBe('CabTabs')
   expect(ex.example).toBe(registry.components.find(c => c.name === 'CabTabs')!.examples[0]!.name)
-  expect(ex.code).toContain("from '@cabinet-ds/vue'")
+  expect(ex.code).toContain("from '@eltonbautista/vue'")
 })
 
 test('get_usage_example errors on unknown example name with the valid names', async () => {

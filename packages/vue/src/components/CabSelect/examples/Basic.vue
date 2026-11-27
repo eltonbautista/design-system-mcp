@@ -1,7 +1,7 @@
 <!-- A select bound with v-model, with a hint and a disabled option. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabSelect } from '@cabinet-ds/vue'
+import { CabSelect } from '@eltonbautista/vue'
 
 const level = ref<string | null>(null)
 const options = [

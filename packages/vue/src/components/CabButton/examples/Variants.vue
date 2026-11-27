@@ -1,6 +1,6 @@
 <!-- All three variants, plus loading and disabled states. -->
 <script setup lang="ts">
-import { CabButton } from '@cabinet-ds/vue'
+import { CabButton } from '@eltonbautista/vue'
 </script>
 
 <template>

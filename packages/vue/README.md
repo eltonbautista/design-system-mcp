@@ -1,4 +1,4 @@
-# @cabinet-ds/vue
+# @eltonbautista/vue
 
 Cabinet is a small, playful Vue 3 component library with an arcade-cabinet feel and a tested accessibility contract on every component.
 
@@ -7,20 +7,20 @@ Cabinet is a small, playful Vue 3 component library with an arcade-cabinet feel 
 ## Install
 
 ```sh
-npm i @cabinet-ds/vue @cabinet-ds/tokens
+npm i @eltonbautista/vue @eltonbautista/tokens
 ```
 
 ```ts
 // main.ts
-import '@cabinet-ds/tokens/tokens.css'   // design tokens (CSS custom properties)
-import '@cabinet-ds/tokens/fonts.css'    // Sora + Outfit (optional)
-import '@cabinet-ds/vue/style.css'       // component styles
+import '@eltonbautista/tokens/tokens.css'   // design tokens (CSS custom properties)
+import '@eltonbautista/tokens/fonts.css'    // Sora + Outfit (optional)
+import '@eltonbautista/vue/style.css'       // component styles
 ```
 
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabButton, CabTextField } from '@cabinet-ds/vue'
+import { CabButton, CabTextField } from '@eltonbautista/vue'
 const email = ref('')
 </script>
 
@@ -36,6 +36,6 @@ Every component follows a WAI-ARIA APG pattern and documents its keyboard map, f
 
 ## For AI assistants
 
-`@cabinet-ds/mcp` is an MCP server generated from this package's source. It gives Claude Code and other assistants the exact props, tokens and examples.
+`@eltonbautista/mcp` is an MCP server generated from this package's source. It gives Claude Code and other assistants the exact props, tokens and examples.
 
 MIT © Elton Bautista

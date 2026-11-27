@@ -25,7 +25,7 @@ jobs:
           node-version-file: .nvmrc
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @cabinet-ds/tokens build
+      - run: pnpm --filter @eltonbautista/tokens build
       - run: pnpm --filter docs build-storybook
       - uses: actions/upload-pages-artifact@v4
         with:

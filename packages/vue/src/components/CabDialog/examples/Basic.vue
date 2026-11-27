@@ -1,7 +1,7 @@
 <!-- A dialog opened from a button, with a form field and actions. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabButton, CabDialog, CabTextField } from '@cabinet-ds/vue'
+import { CabButton, CabDialog, CabTextField } from '@eltonbautista/vue'
 
 const open = ref(false)
 const name = ref('')

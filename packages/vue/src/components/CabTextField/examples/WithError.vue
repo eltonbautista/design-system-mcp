@@ -1,7 +1,7 @@
 <!-- Showing a validation error that names the problem and the fix. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabTextField } from '@cabinet-ds/vue'
+import { CabTextField } from '@eltonbautista/vue'
 
 const email = ref('pixel@')
 </script>

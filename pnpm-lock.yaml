@@ -230,10 +230,10 @@ importers:
 
   apps/docs:
     devDependencies:
-      '@cabinet-ds/tokens':
+      '@eltonbautista/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
-      '@cabinet-ds/vue':
+      '@eltonbautista/vue':
         specifier: workspace:*
         version: link:../../packages/vue
       '@storybook/addon-a11y':
@@ -322,7 +322,7 @@ importers:
 
   packages/vue:
     devDependencies:
-      '@cabinet-ds/tokens':
+      '@eltonbautista/tokens':
         specifier: workspace:*
         version: link:../tokens
       '@storybook/vue3-vite':

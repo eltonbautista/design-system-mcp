@@ -9,9 +9,9 @@ const config: StorybookConfig = {
   framework: { name: '@storybook/vue3-vite', options: { docgen: 'vue-component-meta' } },
   core: { disableTelemetry: true },
   viteFinal: async cfg => {
-    // Examples import from '@cabinet-ds/vue'; point that at the source so docs never show a stale build.
+    // Examples import from '@eltonbautista/vue'; point that at the source so docs never show a stale build.
     const { mergeConfig } = await import('vite')
-    return mergeConfig(cfg, { resolve: { alias: [{ find: /^@cabinet-ds\/vue$/, replacement: vueSrc }] } })
+    return mergeConfig(cfg, { resolve: { alias: [{ find: /^@eltonbautista\/vue$/, replacement: vueSrc }] } })
   },
 }
 export default config

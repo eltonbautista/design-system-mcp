@@ -3,7 +3,7 @@ import { playwright } from '@vitest/browser-playwright'
 import viteConfig from './vite.config'
 
 export default mergeConfig(viteConfig, defineConfig({
-  resolve: { alias: { '@cabinet-ds/vue': new URL('./src/index.ts', import.meta.url).pathname } },
+  resolve: { alias: { '@eltonbautista/vue': new URL('./src/index.ts', import.meta.url).pathname } },
   optimizeDeps: { include: ['axe-core', 'vue', 'vitest-browser-vue'] },
   test: {
     globals: true,

@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "apps/docs/storybook-static/iframe.html"
+        ],
+        "createdAt": "2026-11-27T13:00:37.975Z",
+        "reason": "user confirmed: chose the Arcade Cabinet mockup (warm cream #FFF6EC ground) in the brainstorm; recorded in PRODUCT.md Brand Commitments"
+      }
+    ]
+  }
+}

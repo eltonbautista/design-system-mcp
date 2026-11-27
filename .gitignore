@@ -11,3 +11,4 @@ demo/runs/*/node_modules/
 demo/runs/*/dist/
 demo/runs/*/install.log
 .vitest/
+.impeccable/hook.cache.json

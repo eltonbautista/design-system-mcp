@@ -24,7 +24,7 @@
 
 ## Global Constraints
 
-- **npm scope.** The placeholder is `@cabinet-ds`. Task 14 swaps in the user's npm username before the first publish. Package names are `@cabinet-ds/tokens`, `@cabinet-ds/vue` and `@cabinet-ds/mcp`.
+- **npm scope.** The placeholder is `@cabinet-ds`. Task 14 swaps in the user's npm username before the first publish. Package names are `@eltonbautista/tokens`, `@eltonbautista/vue` and `@eltonbautista/mcp`.
 - **Components.** All components are prefixed `Cab`: CabButton, CabTextField, CabCheckbox, CabSwitch, CabSelect, CabTabs, CabDialog, CabCard. That's exactly 8, with no Tooltip and no Menu.
 - **CSS custom properties** use the prefix `--cab-`. Components read tokens only through `var(--cab-…)`. No hex values in component styles.
 - **Colours:**
@@ -39,7 +39,7 @@
   - hover never moves the element;
   - with `prefers-reduced-motion: reduce`, movement is 0 and colour and opacity transitions stay.
 - **Accessibility:** WCAG 2.1 AA. Every component is fully usable by keyboard, has a visible focus ring (`--cab-color-focus-ring`, 3px, offset 3px), and passes axe with zero violations in every example.
-- **GSAP is never a dependency of `@cabinet-ds/vue`.**
+- **GSAP is never a dependency of `@eltonbautista/vue`.**
 - **No "terminal" styling:** no monospace interface text and no `//` labels.
 - **Commit messages** follow Conventional Commits and end with `Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>`.
 
@@ -128,7 +128,7 @@ test('no SDS naming leaks into output', () => {
 
   `contrastRatio(hexA, hexB): number` is the WCAG 2.x relative-luminance formula, kept in `test/contrast.ts`.
 
-- [ ] **Step 3: Run it.** `pnpm --filter @cabinet-ds/tokens test` → FAIL (`dist/tokens.json` missing).
+- [ ] **Step 3: Run it.** `pnpm --filter @eltonbautista/tokens test` → FAIL (`dist/tokens.json` missing).
 
 - [ ] **Step 4: Write the token JSON and the Style Dictionary config**
   - **DTCG sources:** `$value`/`$type`, with `{color.pink.600}`-style aliases into `primitives`. Name the primitive palette with our own names: `pink`, `cyan`, `purple`, `yellow`, `cream`, `ink`, `red`.
@@ -136,7 +136,7 @@ test('no SDS naming leaks into output', () => {
   - **Reduced motion:** a custom `css/cab-reduced-motion` format appends the media block from a tiny `src/reduced-motion.tokens.json` override.
   - **Build order:** `build` runs before `test` via `"pretest": "pnpm build"`.
 
-- [ ] **Step 5: Run it.** `pnpm --filter @cabinet-ds/tokens test` → PASS. If a contrast pair fails, adjust the primitive, never the threshold.
+- [ ] **Step 5: Run it.** `pnpm --filter @eltonbautista/tokens test` → PASS. If a contrast pair fails, adjust the primitive, never the threshold.
 
 - [ ] **Step 6: Commit.** `git add -A && git commit -m "feat(tokens): Cabinet tokens via Style Dictionary with contrast checks"`
 
@@ -144,21 +144,21 @@ test('no SDS naming leaks into output', () => {
 
 **Files:**
 - Create the package setup: `packages/vue/package.json`, `vite.config.ts` (library mode, entry `src/index.ts`, `vue` external, `vite-plugin-dts`), `vitest.config.ts` (browser mode, Playwright provider, `chromium`, headless), `tsconfig.json`.
-- Create the shared test and style helpers: `packages/vue/test/axe.ts`, `packages/vue/test/setup.ts` (imports `@cabinet-ds/tokens/tokens.css` and `fonts.css`), `packages/vue/src/styles/focus.css`.
+- Create the shared test and style helpers: `packages/vue/test/axe.ts`, `packages/vue/test/setup.ts` (imports `@eltonbautista/tokens/tokens.css` and `fonts.css`), `packages/vue/src/styles/focus.css`.
 - Create the component and its entry point: `packages/vue/src/index.ts`, `packages/vue/src/components/CabButton/{CabButton.vue, CabButton.docs.md, examples/Basic.vue, examples/Variants.vue}`.
 - Test: `packages/vue/src/components/CabButton/CabButton.test.ts`
 
 **Interfaces:**
-- Consumes `--cab-*` vars and `@cabinet-ds/tokens` (`workspace:*`, a peer plus a dev dependency).
+- Consumes `--cab-*` vars and `@eltonbautista/tokens` (`workspace:*`, a peer plus a dev dependency).
 - Produces the test helper `expectNoA11yViolations(root: Element): Promise<void>` in `test/axe.ts`. It runs `axe.run(root)` and fails, listing `id` and `help` for each violation.
 - Produces the **component folder convention** every later task follows:
   - `Cab<Name>.vue`. Its top-level JSDoc above `defineOptions({ name: 'Cab<Name>' })` gives the one-line description. Every prop gets a JSDoc line.
   - `Cab<Name>.docs.md` with exactly these headings: `## Summary`, `## Pattern` (APG link), `## Keyboard` (a `| Key | Action |` table), `## Focus`, `## Screen reader`.
-  - `examples/*.vue`: self-contained SFCs that import only from `@cabinet-ds/vue`. The first line is an HTML comment holding a one-line description.
+  - `examples/*.vue`: self-contained SFCs that import only from `@eltonbautista/vue`. The first line is an HTML comment holding a one-line description.
 - Produces `CabButton`:
   - **Props:** `variant?: 'primary' | 'secondary' | 'ghost'` (default `primary`), `size?: 'sm' | 'md' | 'lg'` (`md`), `type?: 'button' | 'submit' | 'reset'` (`button`), `disabled?: boolean`, `loading?: boolean`.
   - **Slot:** `default`. **Emits:** `click(MouseEvent)`.
-- Produces from `src/index.ts`: named exports of all components, plus `import '@cabinet-ds/vue/style.css'`, a single bundled stylesheet.
+- Produces from `src/index.ts`: named exports of all components, plus `import '@eltonbautista/vue/style.css'`, a single bundled stylesheet.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -171,7 +171,7 @@ test('press moves by --cab-motion-distance-press only on :active', ...)  // read
 test('examples have no axe violations', async () => { for (const Ex of [Basic, Variants]) await expectNoA11yViolations(render(Ex).container) })
 ```
 
-- [ ] **Step 2: Run them.** `pnpm --filter @cabinet-ds/vue test -- CabButton` → FAIL (component missing). The first run needs `pnpm exec playwright install chromium`.
+- [ ] **Step 2: Run them.** `pnpm --filter @eltonbautista/vue test -- CabButton` → FAIL (component missing). The first run needs `pnpm exec playwright install chromium`.
 
 - [ ] **Step 3: Implement `CabButton.vue`**
   - It's a native `<button>`.
@@ -184,7 +184,7 @@ test('examples have no axe violations', async () => { for (const Ex of [Basic, V
 
 - [ ] **Step 4: Write `CabButton.docs.md` and the two examples**
   - The docs file covers: APG Button; Enter and Space activate; loading is announced through `aria-busy`; there's no `aria-disabled` trick.
-  - Run: `pnpm --filter @cabinet-ds/vue test` → PASS, and `pnpm --filter @cabinet-ds/vue build` emits `dist/index.js`, `dist/style.css` and `dist/index.d.ts`.
+  - Run: `pnpm --filter @eltonbautista/vue test` → PASS, and `pnpm --filter @eltonbautista/vue build` emits `dist/index.js`, `dist/style.css` and `dist/index.d.ts`.
 
 - [ ] **Step 5: Commit.** `feat(vue): package harness and CabButton`
 
@@ -201,7 +201,7 @@ test('examples have no axe violations', async () => { for (const Ex of [Basic, V
   - `Cab<Name>.stories.ts` lives next to the component, with `title: 'Components/Cab<Name>'` and `component`.
   - It has one story per `examples/*.vue`, rendering that SFC, with `parameters.docs.source.code` set to the example's raw source (`?raw` import).
   - `tags: ['autodocs']`.
-- Produces `parseDocsMd(md: string, fileName: string): { summary: string; pattern: string; keyboard: string; focus: string; screenReader: string }`, which splits the file on the fixed `##` headings. It's exported as `@cabinet-ds/vue/docs-utils` and reused by Task 11.
+- Produces `parseDocsMd(md: string, fileName: string): { summary: string; pattern: string; keyboard: string; focus: string; screenReader: string }`, which splits the file on the fixed `##` headings. It's exported as `@eltonbautista/vue/docs-utils` and reused by Task 11.
 
 - [ ] **Step 1: Write the failing test.** `packages/vue/src/docs/parseDocsMd.test.ts`:
   - Parsing `CabButton.docs.md` returns non-empty `summary`, `keyboard` containing `| Enter |`, and so on.
@@ -225,7 +225,7 @@ test('examples have no axe violations', async () => { for (const Ex of [Basic, V
 
 ### Tasks 4–10: The remaining components
 
-Each task creates `packages/vue/src/components/Cab<Name>/` following the Task 2 and 3 conventions: SFC, `docs.md`, examples, stories and tests, exported from `src/index.ts`. Each task ends with `pnpm --filter @cabinet-ds/vue test`, `pnpm --filter docs exec vitest run` and a commit `feat(vue): Cab<Name>`. Every test file also includes `examples have no axe violations`.
+Each task creates `packages/vue/src/components/Cab<Name>/` following the Task 2 and 3 conventions: SFC, `docs.md`, examples, stories and tests, exported from `src/index.ts`. Each task ends with `pnpm --filter @eltonbautista/vue test`, `pnpm --filter docs exec vitest run` and a commit `feat(vue): Cab<Name>`. Every test file also includes `examples have no axe violations`.
 
 #### Task 4: CabTextField
 - **Props:**
@@ -358,7 +358,7 @@ Each task creates `packages/vue/src/components/Cab<Name>/` following the Task 2 
 export interface Registry { package: string; version: string; components: ComponentEntry[]; tokens: TokenEntry[] }
 export interface ComponentEntry {
   name: string                // "CabButton"
-  import: string              // "import { CabButton } from '@cabinet-ds/vue'"
+  import: string              // "import { CabButton } from '@eltonbautista/vue'"
   description: string         // component JSDoc
   props: { name: string; type: string; required: boolean; default?: string; description: string }[]
   events: { name: string; type: string; description: string }[]
@@ -375,7 +375,7 @@ export type TokenEntry = { name: string; cssVar: string; value: string; type: st
   - `includes all 8 components sorted by name`.
   - `CabButton.props has variant with type "'primary' | 'secondary' | 'ghost'" and default "'primary'"`.
   - `CabTextField.events includes update:modelValue`.
-  - `every component has >=1 example whose code imports from @cabinet-ds/vue`.
+  - `every component has >=1 example whose code imports from @eltonbautista/vue`.
   - `every token has a --cab- cssVar`.
   - `fails loudly when a component lacks docs.md`.
 - [ ] **Step 2: Run them.** → FAIL. Implement. → PASS. Run `pnpm registry` and commit `registry.json`.
@@ -410,7 +410,7 @@ export type TokenEntry = { name: string; cssVar: string; value: string; type: st
   - `get_tokens query="primary" matches action.primary tokens`.
   - `get_usage_example defaults to first example and errors on unknown example name with the valid names`.
 - [ ] **Step 2: Run them.** → FAIL. Implement `server.ts`, `lookup.ts`, and `stdio.ts` (`StdioServerTransport`, with a shebang). → PASS.
-- [ ] **Step 3: Smoke test.** `pnpm --filter @cabinet-ds/mcp build && npx @modelcontextprotocol/inspector --cli node packages/mcp/dist/stdio.js --method tools/list` lists the 4 tools.
+- [ ] **Step 3: Smoke test.** `pnpm --filter @eltonbautista/mcp build && npx @modelcontextprotocol/inspector --cli node packages/mcp/dist/stdio.js --method tools/list` lists the 4 tools.
 - [ ] **Step 4: Commit.** `feat(mcp): stdio MCP server with four tools`
 
 ### Task 13: CI
@@ -424,7 +424,7 @@ export type TokenEntry = { name: string; cssVar: string; value: string; type: st
   1. `pnpm install --frozen-lockfile`
   2. `pnpm lint`
   3. `pnpm typecheck`
-  4. `pnpm --filter @cabinet-ds/tokens test` (contrast check)
+  4. `pnpm --filter @eltonbautista/tokens test` (contrast check)
   5. `pnpm exec playwright install --with-deps chromium`
   6. `pnpm test`
   7. `pnpm registry:check`

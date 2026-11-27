@@ -1,7 +1,7 @@
 <!-- A group of checkboxes inside a fieldset, one with a hint. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabCheckbox } from '@cabinet-ds/vue'
+import { CabCheckbox } from '@eltonbautista/vue'
 
 const lunch = ref(true)
 const parking = ref(false)

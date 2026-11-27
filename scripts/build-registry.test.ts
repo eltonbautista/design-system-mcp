@@ -14,8 +14,8 @@ test('includes all 8 components sorted by name', () => {
 })
 
 test('records the package name and an import line', () => {
-  expect(registry.package).toBe('@cabinet-ds/vue')
-  expect(byName('CabButton').import).toBe("import { CabButton } from '@cabinet-ds/vue'")
+  expect(registry.package).toBe('@eltonbautista/vue')
+  expect(byName('CabButton').import).toBe("import { CabButton } from '@eltonbautista/vue'")
 })
 
 test('CabButton.variant has its union type (no undefined) and default', () => {
@@ -53,11 +53,11 @@ test('a11y sections come from docs.md', () => {
   expect(byName('CabSelect').a11y.keyboard).toContain('| Escape (open) |')
 })
 
-test('every component has >=1 example whose code imports from @cabinet-ds/vue', () => {
+test('every component has >=1 example whose code imports from @eltonbautista/vue', () => {
   for (const c of registry.components) {
     expect(c.examples.length, c.name).toBeGreaterThan(0)
     for (const e of c.examples) {
-      expect(e.code).toContain("from '@cabinet-ds/vue'")
+      expect(e.code).toContain("from '@eltonbautista/vue'")
       expect(e.description.length, `${c.name}/${e.name}`).toBeGreaterThan(0)
     }
   }

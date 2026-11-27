@@ -1,5 +1,5 @@
 {
-  "name": "@cabinet-ds/vue",
+  "name": "@eltonbautista/vue",
   "version": "0.0.0",
   "description": "Cabinet: a playful, accessible Vue 3 component library.",
   "type": "module",
@@ -30,7 +30,7 @@
     "typecheck": "vue-tsc --noEmit -p tsconfig.json"
   },
   "devDependencies": {
-    "@cabinet-ds/tokens": "workspace:*",
+    "@eltonbautista/tokens": "workspace:*",
     "@storybook/vue3-vite": "^10.6.9",
     "@vitejs/plugin-vue": "^6.0.11",
     "@vitest/browser-playwright": "^5.1.2",
@@ -46,7 +46,7 @@
     "vue-tsc": "^3.3.14"
   },
   "peerDependencies": {
-    "@cabinet-ds/tokens": "workspace:^",
+    "@eltonbautista/tokens": "workspace:^",
     "vue": "^3.5.0"
   },
   "license": "MIT",
@@ -61,7 +61,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/REPLACE_GH_OWNER/REPLACE_GH_REPO.git",
+    "url": "git+https://github.com/eltonbautista/design-system-mcp.git",
     "directory": "packages/vue"
   },
   "publishConfig": {
