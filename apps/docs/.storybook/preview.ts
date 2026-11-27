@@ -12,6 +12,7 @@ const preview: Preview = {
     docs: { theme },
     backgrounds: { disable: true },
     controls: { expanded: true },
+    options: { storySort: { order: ['Welcome', 'Components'] } },
   },
 }
 export default preview
