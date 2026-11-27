@@ -11,6 +11,15 @@
         ],
         "createdAt": "2026-11-27T13:00:37.975Z",
         "reason": "user confirmed: chose the Arcade Cabinet mockup (warm cream #FFF6EC ground) in the brainstorm; recorded in PRODUCT.md Brand Commitments"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "apps/docs/storybook-static/assets/Color-6AOWCN3U-rexT2FFs.js"
+        ],
+        "createdAt": "2026-11-27T13:37:07.610Z",
+        "reason": "false positive: Storybook's own minified colour-picker control in generated build output (gitignored), not Cabinet code"
       }
     ]
   }
