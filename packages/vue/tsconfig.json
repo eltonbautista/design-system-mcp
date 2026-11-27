@@ -1,0 +1,5 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": { "jsx": "preserve", "types": ["vite/client", "vitest/globals", "@vitest/browser-playwright"] },
+  "include": ["src", "test", "*.ts"]
+}
