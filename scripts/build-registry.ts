@@ -21,6 +21,10 @@ function sfcDescription(src: string, file: string): string {
   return m[1]!.split('\n').map(l => l.replace(/^\s*\* ?/, '').trim()).filter(Boolean).join(' ')
 }
 
+function exportedInterfaces(src: string): string[] {
+  return [...src.matchAll(/^export interface \w+ \{[\s\S]*?^\}/gm)].map(m => m[0])
+}
+
 function exampleDescription(src: string, file: string): string {
   const m = /^<!--\s*([\s\S]*?)\s*-->/.exec(src.trim())
   if (!m) throw new Error(`Example ${file} must start with an <!-- description --> comment`)
@@ -48,6 +52,7 @@ export function buildRegistry(root: string): Registry {
     const docsPath = join(dir, docsFile)
     if (!existsSync(docsPath)) throw new Error(`Missing ${docsFile} for ${name} (every component needs one)`)
     const meta = checker.getComponentMeta(sfcPath)
+    const sfc = readFileSync(sfcPath, 'utf8')
 
     const props: PropEntry[] = meta.props
       .filter(p => !p.global)
@@ -68,8 +73,9 @@ export function buildRegistry(root: string): Registry {
     return {
       name,
       import: `import { ${name} } from '${pkg.name}'`,
-      description: sfcDescription(readFileSync(sfcPath, 'utf8'), sfcPath),
+      description: sfcDescription(sfc, sfcPath),
       props,
+      types: exportedInterfaces(sfc),
       events: meta.events.map(e => ({ name: e.name, type: e.type, description: e.description })),
       slots: meta.slots.map(s => ({ name: s.name, type: s.type, description: s.description })),
       a11y: parseDocsMd(readFileSync(docsPath, 'utf8'), docsFile),

@@ -43,6 +43,7 @@
           "description": "Shows a spinner, sets `aria-busy`, and ignores clicks while staying focusable."
         }
       ],
+      "types": [],
       "events": [
         {
           "name": "click",
@@ -109,6 +110,7 @@
           "description": "Makes the title a link and stretches its hit area over the whole card."
         }
       ],
+      "types": [],
       "events": [],
       "slots": [
         {
@@ -178,6 +180,7 @@
           "description": "Disables the checkbox."
         }
       ],
+      "types": [],
       "events": [
         {
           "name": "update:modelValue",
@@ -237,6 +240,7 @@
           "description": "Accessible name of the close button."
         }
       ],
+      "types": [],
       "events": [
         {
           "name": "update:open",
@@ -326,6 +330,9 @@
           "description": "Disables the select."
         }
       ],
+      "types": [
+        "export interface CabSelectOption {\n  /** Value emitted through `v-model`. */\n  value: string\n  /** Visible option text (also used for typeahead). */\n  label: string\n  /** Disabled options are shown but cannot be chosen or reached with the keyboard. */\n  disabled?: boolean\n}"
+      ],
       "events": [
         {
           "name": "update:modelValue",
@@ -379,6 +386,7 @@
           "description": "Disables the switch."
         }
       ],
+      "types": [],
       "events": [
         {
           "name": "update:modelValue",
@@ -437,6 +445,9 @@
           "default": "\"automatic\"",
           "description": "`automatic` selects a tab as soon as it gets focus; `manual` waits for Enter or Space."
         }
+      ],
+      "types": [
+        "export interface CabTab {\n  /** Stable id used as the `v-model` value. */\n  id: string\n  /** Visible tab text. */\n  label: string\n  /** Disabled tabs are skipped by the arrow keys and cannot be selected. */\n  disabled?: boolean\n}"
       ],
       "events": [
         {
@@ -535,6 +546,7 @@
           "description": "Placeholder example text. Never a substitute for `label` or `hint`."
         }
       ],
+      "types": [],
       "events": [
         {
           "name": "update:modelValue",
