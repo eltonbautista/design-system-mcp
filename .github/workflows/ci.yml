@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Lint (incl. vuejs-accessibility)
+        run: pnpm lint
+      - name: Build tokens
+        run: pnpm --filter @cabinet-ds/tokens build
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Token contrast checks (WCAG AA)
+        run: pnpm --filter @cabinet-ds/tokens test
+      - name: Install Chromium for browser tests
+        run: pnpm --filter @cabinet-ds/vue exec playwright install --with-deps chromium
+      - name: Component tests (keyboard, focus, axe) + Storybook stories + MCP + registry
+        run: pnpm test
+      - name: Registry is in sync with the source
+        run: pnpm registry:check
+      - name: Build packages
+        run: pnpm build
+      - name: Build Storybook
+        run: pnpm --filter docs build-storybook
