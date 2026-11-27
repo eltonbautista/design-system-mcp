@@ -7,3 +7,7 @@ storybook-static/
 .DS_Store
 storybook-static/
 .impeccable/review/
+demo/runs/*/node_modules/
+demo/runs/*/dist/
+demo/runs/*/install.log
+.vitest/
