@@ -17,7 +17,9 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": [
     "*.css"
@@ -46,5 +48,24 @@
   "peerDependencies": {
     "@cabinet-ds/tokens": "workspace:^",
     "vue": "^3.5.0"
+  },
+  "license": "MIT",
+  "author": "Elton Bautista",
+  "keywords": [
+    "vue",
+    "vue3",
+    "components",
+    "accessibility",
+    "a11y",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_GH_OWNER/REPLACE_GH_REPO.git",
+    "directory": "packages/vue"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }
