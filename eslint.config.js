@@ -15,5 +15,5 @@ export default tseslint.config(
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  { rules: { 'vue/multi-word-component-names': 'off', 'vue/singleline-html-element-content-newline': 'off', 'vue/max-attributes-per-line': 'off', 'vue/html-self-closing': 'off' } },
+  { rules: { 'vue/multi-word-component-names': 'off', 'vue/singleline-html-element-content-newline': 'off', 'vue/max-attributes-per-line': 'off', 'vue/html-self-closing': 'off', 'vue/require-default-prop': 'off', 'vuejs-accessibility/label-has-for': ['error', { required: { some: ['nesting', 'id'] } }] } },
 )
