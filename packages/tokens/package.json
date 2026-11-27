@@ -17,7 +17,9 @@
   "files": [
     "dist",
     "fonts.css",
-    "src"
+    "src",
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": [
     "*.css"
@@ -37,5 +39,22 @@
     "@types/node": "^26.6.11",
     "typescript": "^6.0.3",
     "vitest": "^5.1.2"
+  },
+  "license": "MIT",
+  "author": "Elton Bautista",
+  "keywords": [
+    "design-tokens",
+    "style-dictionary",
+    "css-variables",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_GH_OWNER/REPLACE_GH_REPO.git",
+    "directory": "packages/tokens"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

@@ -14,7 +14,9 @@
     "./registry.json": "./dist/registry.json"
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "build": "tsup",
@@ -30,5 +32,23 @@
     "tsup": "^9.0.0",
     "typescript": "^6.0.3",
     "vitest": "^5.1.2"
+  },
+  "license": "MIT",
+  "author": "Elton Bautista",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "vue",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_GH_OWNER/REPLACE_GH_REPO.git",
+    "directory": "packages/mcp"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

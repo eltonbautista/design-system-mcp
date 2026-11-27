@@ -12,9 +12,11 @@
     "lint": "eslint .",
     "typecheck": "pnpm -r typecheck",
     "registry": "tsx scripts/build-registry.ts",
-    "registry:check": "tsx scripts/build-registry.ts --check"
+    "registry:check": "tsx scripts/build-registry.ts --check",
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.3",
     "@eslint/js": "^10.0.1",
     "@types/node": "^26.6.11",
     "eslint": "^10.15.0",
