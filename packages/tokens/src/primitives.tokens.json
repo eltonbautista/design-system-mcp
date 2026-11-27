@@ -1,0 +1,13 @@
+{
+  "palette": {
+    "$type": "color",
+    "pink":   { "500": { "$value": "#FF3D8B" }, "600": { "$value": "#D6146A" }, "900": { "$value": "#8E0B45" } },
+    "cyan":   { "400": { "$value": "#2DD4E8" }, "700": { "$value": "#138A99" } },
+    "purple": { "600": { "$value": "#6C2BD9" }, "900": { "$value": "#3F1488" } },
+    "yellow": { "300": { "$value": "#FFE14D" }, "600": { "$value": "#C9A800" } },
+    "cream":  { "50": { "$value": "#FFF6EC" }, "200": { "$value": "#F6E8D8" }, "300": { "$value": "#EAD9C6" }, "400": { "$value": "#F0DCC6" } },
+    "ink":    { "600": { "$value": "#6E5F86" }, "900": { "$value": "#24163F" } },
+    "red":    { "700": { "$value": "#B4002A" } },
+    "white":  { "$value": "#FFFFFF" }
+  }
+}

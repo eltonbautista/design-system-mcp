@@ -1,0 +1,41 @@
+{
+  "name": "@cabinet-ds/tokens",
+  "version": "0.0.0",
+  "description": "Cabinet design tokens: CSS custom properties, JS and JSON, built with Style Dictionary.",
+  "type": "module",
+  "main": "./dist/tokens.js",
+  "types": "./dist/tokens.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "default": "./dist/tokens.js"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./fonts.css": "./fonts.css"
+  },
+  "files": [
+    "dist",
+    "fonts.css",
+    "src"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.mjs --silent",
+    "pretest": "pnpm build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@fontsource-variable/outfit": "^5.3.0",
+    "@fontsource-variable/sora": "^5.3.0",
+    "style-dictionary": "^5.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.11",
+    "typescript": "^6.0.3",
+    "vitest": "^5.1.2"
+  }
+}
