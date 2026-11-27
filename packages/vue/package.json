@@ -1,0 +1,48 @@
+{
+  "name": "@cabinet-ds/vue",
+  "version": "0.0.0",
+  "description": "Cabinet: a playful, accessible Vue 3 component library.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./style.css": "./dist/style.css",
+    "./docs-utils": {
+      "types": "./dist/docs-utils.d.ts",
+      "default": "./dist/docs-utils.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "typecheck": "vue-tsc --noEmit -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@cabinet-ds/tokens": "workspace:*",
+    "@vitejs/plugin-vue": "^6.0.11",
+    "@vitest/browser-playwright": "^5.1.2",
+    "axe-core": "^4.14.1",
+    "playwright": "^1.65.1",
+    "typescript": "^6.0.3",
+    "unplugin-dts": "^1.1.2",
+    "vite": "^8.4.0",
+    "vitest": "^5.1.2",
+    "vitest-browser-vue": "^3.1.0",
+    "vue": "^3.5.46",
+    "vue-tsc": "^3.3.14"
+  },
+  "peerDependencies": {
+    "@cabinet-ds/tokens": "workspace:^",
+    "vue": "^3.5.0"
+  }
+}
