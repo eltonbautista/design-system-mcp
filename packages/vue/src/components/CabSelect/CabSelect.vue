@@ -3,6 +3,8 @@
  * A select-only combobox: pick one value from a short list of options.
  * Follows the APG "Select-Only Combobox" pattern; focus never leaves the combobox.
  */
+import '../../styles/focus.css'
+import '../../styles/field.css'
 import { computed, nextTick, onBeforeUnmount, ref, useId, watch } from 'vue'
 import FieldError from '../FieldError.vue'
 import { nextEnabledIndex, type Move } from '../../composables/nextEnabledIndex'

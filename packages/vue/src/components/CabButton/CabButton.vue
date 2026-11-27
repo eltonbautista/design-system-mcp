@@ -3,6 +3,7 @@
  * An arcade-style button with a glossy face that presses into its coloured base.
  * Renders a native `<button>`; use it for actions, not navigation.
  */
+import '../../styles/focus.css'
 defineOptions({ name: 'CabButton' })
 
 const props = withDefaults(defineProps<{

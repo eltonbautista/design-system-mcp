@@ -3,6 +3,7 @@
  * Tabs that switch between related panels of content in place.
  * Follows the APG Tabs pattern with roving tabindex and automatic or manual activation.
  */
+import '../../styles/focus.css'
 import { computed, nextTick, ref, useId } from 'vue'
 import { nextEnabledIndex, type Move } from '../../composables/nextEnabledIndex'
 

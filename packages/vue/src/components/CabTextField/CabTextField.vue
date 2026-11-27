@@ -3,6 +3,8 @@
  * A single-line text input with a visible label, optional hint and an error message.
  * Errors are announced through `aria-describedby` and marked with `aria-invalid`.
  */
+import '../../styles/focus.css'
+import '../../styles/field.css'
 import { computed, useId } from 'vue'
 import FieldError from '../FieldError.vue'
 

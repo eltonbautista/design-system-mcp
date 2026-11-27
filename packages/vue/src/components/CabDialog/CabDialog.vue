@@ -3,6 +3,7 @@
  * A modal dialog for a short, focused task or a confirmation that must be answered before continuing.
  * Built on the native `<dialog>` with `showModal()`, so the page behind it is inert.
  */
+import '../../styles/focus.css'
 import { nextTick, onBeforeUnmount, onMounted, ref, useId, watch } from 'vue'
 
 defineOptions({ name: 'CabDialog' })
