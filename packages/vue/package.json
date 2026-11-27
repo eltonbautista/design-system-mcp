@@ -29,10 +29,12 @@
   },
   "devDependencies": {
     "@cabinet-ds/tokens": "workspace:*",
+    "@storybook/vue3-vite": "^10.6.9",
     "@vitejs/plugin-vue": "^6.0.11",
     "@vitest/browser-playwright": "^5.1.2",
     "axe-core": "^4.14.1",
     "playwright": "^1.65.1",
+    "storybook": "^10.6.9",
     "typescript": "^6.0.3",
     "unplugin-dts": "^1.1.2",
     "vite": "^8.4.0",
