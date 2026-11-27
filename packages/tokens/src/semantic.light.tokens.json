@@ -1,0 +1,93 @@
+{
+  "color": {
+    "$type": "color",
+    "bg": {
+      "canvas":  { "$value": "{palette.cream.50}",  "$description": "Page background: warm cream." },
+      "surface": { "$value": "{palette.white}",     "$description": "Cards, fields, menus." },
+      "sunken":  { "$value": "{palette.cream.200}", "$description": "Inset areas, inactive chips, tracks." }
+    },
+    "text": {
+      "default":      { "$value": "{palette.ink.900}", "$description": "Body and heading text." },
+      "muted":        { "$value": "{palette.ink.600}", "$description": "Secondary text, hints." },
+      "on-primary":   { "$value": "{palette.white}",   "$description": "Text on primary action and active state." },
+      "on-secondary": { "$value": "{palette.ink.900}", "$description": "Text on secondary action." }
+    },
+    "action": {
+      "primary": {
+        "bg":   { "$value": "{palette.pink.600}", "$description": "Primary button face (candy pink, AA with white text)." },
+        "base": { "$value": "{palette.pink.900}", "$description": "Coloured base the primary button presses into." }
+      },
+      "secondary": {
+        "bg":   { "$value": "{palette.cyan.400}", "$description": "Secondary button face (cyan)." },
+        "base": { "$value": "{palette.cyan.700}", "$description": "Coloured base under the secondary button." }
+      }
+    },
+    "state": {
+      "active": {
+        "bg":   { "$value": "{palette.purple.600}", "$description": "Selected/active state: active tab, checked switch." },
+        "base": { "$value": "{palette.purple.900}", "$description": "Ledge under active elements." }
+      }
+    },
+    "highlight": {
+      "bg":   { "$value": "{palette.yellow.300}", "$description": "Tags, highlights, switch thumb." },
+      "base": { "$value": "{palette.yellow.600}", "$description": "Ledge under highlight elements." }
+    },
+    "focus":  { "ring": { "$value": "{palette.purple.600}", "$description": "Keyboard focus outline (3px, 3px offset)." } },
+    "border": {
+      "default": { "$value": "{palette.cream.300}", "$description": "Decorative borders (not for control boundaries)." },
+      "strong":  { "$value": "{palette.ink.600}",   "$description": "Control boundaries: fields, checkboxes (3:1)." }
+    },
+    "danger": { "text": { "$value": "{palette.red.700}", "$description": "Error messages and invalid borders." } },
+    "shadow": { "ledge": { "$value": "{palette.cream.400}", "$description": "Soft ledge under cards." } }
+  },
+  "space": {
+    "$type": "dimension",
+    "1": { "$value": "4px" }, "2": { "$value": "8px" }, "3": { "$value": "12px" }, "4": { "$value": "16px" },
+    "5": { "$value": "20px" }, "6": { "$value": "24px" }, "7": { "$value": "32px" }, "8": { "$value": "40px" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm": { "$value": "10px" }, "md": { "$value": "14px" }, "lg": { "$value": "20px" }, "pill": { "$value": "999px" }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "display": { "$value": ["Sora Variable", "sans-serif"], "$description": "Headings and display text." },
+      "body":    { "$value": ["Outfit Variable", "sans-serif"], "$description": "Interface and body text." }
+    },
+    "size": {
+      "$type": "dimension",
+      "sm": { "$value": "14px" }, "md": { "$value": "16px" }, "lg": { "$value": "18px" }, "xl": { "$value": "22px" }, "2xl": { "$value": "28px" }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": { "$value": 400 }, "medium": { "$value": 500 }, "bold": { "$value": 700 }, "heavy": { "$value": 800 }
+    }
+  },
+  "motion": {
+    "duration": {
+      "$type": "duration",
+      "instant": { "$value": "120ms", "$description": "Presses and immediate feedback." },
+      "base":    { "$value": "200ms", "$description": "Routine state changes: tabs, switches." },
+      "overlay": { "$value": "300ms", "$description": "Dialog enter." },
+      "exit":    { "$value": "200ms", "$description": "Dialog exit (faster than enter)." }
+    },
+    "easing": {
+      "standard": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1], "$description": "The one easing curve. No bounce." }
+    },
+    "distance": {
+      "press": {
+        "$type": "dimension", "$value": "4px",
+        "$description": "How far a button presses into its base. 0px under prefers-reduced-motion.",
+        "$extensions": { "cab.reducedMotion": "0px" }
+      }
+    }
+  },
+  "shadow": {
+    "ledge": {
+      "$type": "shadow",
+      "$value": { "color": "{color.shadow.ledge}", "offsetX": "0px", "offsetY": "6px", "blur": "0px", "spread": "0px" },
+      "$description": "Soft ledge under cards."
+    }
+  }
+}

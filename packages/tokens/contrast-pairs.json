@@ -1,0 +1,17 @@
+[
+  ["color.text.default", "color.bg.canvas", 4.5],
+  ["color.text.default", "color.bg.surface", 4.5],
+  ["color.text.default", "color.bg.sunken", 4.5],
+  ["color.text.muted", "color.bg.canvas", 4.5],
+  ["color.text.muted", "color.bg.surface", 4.5],
+  ["color.text.muted", "color.bg.sunken", 4.5],
+  ["color.text.on-primary", "color.action.primary.bg", 4.5],
+  ["color.text.on-secondary", "color.action.secondary.bg", 4.5],
+  ["color.text.on-primary", "color.state.active.bg", 4.5],
+  ["color.text.default", "color.highlight.bg", 4.5],
+  ["color.danger.text", "color.bg.surface", 4.5],
+  ["color.danger.text", "color.bg.canvas", 4.5],
+  ["color.focus.ring", "color.bg.canvas", 3.0],
+  ["color.focus.ring", "color.bg.surface", 3.0],
+  ["color.border.strong", "color.bg.surface", 3.0]
+]
