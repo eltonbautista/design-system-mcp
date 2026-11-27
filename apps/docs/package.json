@@ -9,8 +9,8 @@
     "typecheck": "echo skip"
   },
   "devDependencies": {
-    "@cabinet-ds/tokens": "workspace:*",
-    "@cabinet-ds/vue": "workspace:*",
+    "@eltonbautista/tokens": "workspace:*",
+    "@eltonbautista/vue": "workspace:*",
     "@storybook/addon-a11y": "^10.6.9",
     "@storybook/addon-docs": "^10.6.9",
     "@storybook/addon-vitest": "^10.6.9",

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabButton, CabCard, CabTextField, CabSelect } from '@cabinet-ds/vue'
+import { CabButton, CabCard, CabTextField, CabSelect } from '@eltonbautista/vue'
 const name = ref('')
 const level = ref<string | null>(null)
 const open = ref(false)

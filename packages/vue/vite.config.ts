@@ -10,6 +10,6 @@ export default defineConfig({
       formats: ['es'],
       cssFileName: 'style',
     },
-    rollupOptions: { external: ['vue', /^@cabinet-ds\/tokens/] },
+    rollupOptions: { external: ['vue', /^@eltonbautista\/tokens/] },
   },
 })

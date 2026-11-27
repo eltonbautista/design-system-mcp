@@ -1,6 +1,6 @@
 <!-- A content card with a tag, body text and an action. -->
 <script setup lang="ts">
-import { CabButton, CabCard } from '@cabinet-ds/vue'
+import { CabButton, CabCard } from '@eltonbautista/vue'
 </script>
 
 <template>

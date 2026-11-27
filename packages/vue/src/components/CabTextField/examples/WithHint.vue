@@ -1,7 +1,7 @@
 <!-- A required email field with hint text. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabTextField } from '@cabinet-ds/vue'
+import { CabTextField } from '@eltonbautista/vue'
 
 const email = ref('')
 </script>

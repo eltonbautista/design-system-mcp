@@ -1,7 +1,7 @@
 <!-- Three tabs with automatic activation (selection follows focus). -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabTabs } from '@cabinet-ds/vue'
+import { CabTabs } from '@eltonbautista/vue'
 
 const tab = ref('schedule')
 const tabs = [

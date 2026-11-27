@@ -1,11 +1,11 @@
-# @cabinet-ds/mcp
+# @eltonbautista/mcp
 
-An MCP server that teaches AI coding assistants how to use the Cabinet Vue components (`@cabinet-ds/vue`) correctly. Its data is generated from the library's own source (TypeScript types, tested examples, accessibility notes and design tokens), so it can't drift from the code.
+An MCP server that teaches AI coding assistants how to use the Cabinet Vue components (`@eltonbautista/vue`) correctly. Its data is generated from the library's own source (TypeScript types, tested examples, accessibility notes and design tokens), so it can't drift from the code.
 
 ## Use with Claude Code
 
 ```sh
-claude mcp add cabinet -- npx -y @cabinet-ds/mcp
+claude mcp add cabinet -- npx -y @eltonbautista/mcp
 ```
 
 ## Tools

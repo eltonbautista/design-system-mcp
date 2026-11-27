@@ -1,7 +1,7 @@
 <!-- A confirmation with no form fields; focus starts on the first action. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabButton, CabDialog } from '@cabinet-ds/vue'
+import { CabButton, CabDialog } from '@eltonbautista/vue'
 
 const open = ref(false)
 </script>

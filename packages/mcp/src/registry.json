@@ -1,10 +1,10 @@
 {
-  "package": "@cabinet-ds/vue",
+  "package": "@eltonbautista/vue",
   "version": "0.0.0",
   "components": [
     {
       "name": "CabButton",
-      "import": "import { CabButton } from '@cabinet-ds/vue'",
+      "import": "import { CabButton } from '@eltonbautista/vue'",
       "description": "An arcade-style button with a glossy face that presses into its coloured base. Renders a native `<button>`; use it for actions, not navigation.",
       "props": [
         {
@@ -69,18 +69,18 @@
         {
           "name": "Basic",
           "description": "A primary action button.",
-          "code": "<!-- A primary action button. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <CabButton @click=\"() => {}\">Book a seat</CabButton>\n</template>\n"
+          "code": "<!-- A primary action button. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@eltonbautista/vue'\n</script>\n\n<template>\n  <CabButton @click=\"() => {}\">Book a seat</CabButton>\n</template>\n"
         },
         {
           "name": "Variants",
           "description": "All three variants, plus loading and disabled states.",
-          "code": "<!-- All three variants, plus loading and disabled states. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"display: flex; flex-wrap: wrap; gap: var(--cab-space-4); align-items: center\">\n    <CabButton variant=\"primary\">Book a seat</CabButton>\n    <CabButton variant=\"secondary\">Add to calendar</CabButton>\n    <CabButton variant=\"ghost\">Maybe later</CabButton>\n    <CabButton loading>Saving</CabButton>\n    <CabButton disabled>Sold out</CabButton>\n  </div>\n</template>\n"
+          "code": "<!-- All three variants, plus loading and disabled states. -->\n<script setup lang=\"ts\">\nimport { CabButton } from '@eltonbautista/vue'\n</script>\n\n<template>\n  <div style=\"display: flex; flex-wrap: wrap; gap: var(--cab-space-4); align-items: center\">\n    <CabButton variant=\"primary\">Book a seat</CabButton>\n    <CabButton variant=\"secondary\">Add to calendar</CabButton>\n    <CabButton variant=\"ghost\">Maybe later</CabButton>\n    <CabButton loading>Saving</CabButton>\n    <CabButton disabled>Sold out</CabButton>\n  </div>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabCard",
-      "import": "import { CabCard } from '@cabinet-ds/vue'",
+      "import": "import { CabCard } from '@eltonbautista/vue'",
       "description": "A content container with a soft ledge, for grouping a title, media, text and actions. Not interactive by itself; pass `href` to make the whole card a link through its title.",
       "props": [
         {
@@ -140,18 +140,18 @@
         {
           "name": "Basic",
           "description": "A content card with a tag, body text and an action.",
-          "code": "<!-- A content card with a tag, body text and an action. -->\n<script setup lang=\"ts\">\nimport { CabButton, CabCard } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"max-width: 360px\">\n    <CabCard title=\"Weekend game jam\" :heading-level=\"2\">\n      <p>Two days of prototyping, playtesting and pizza. No experience needed.</p>\n      <template #footer>\n        <CabButton size=\"sm\">Save a seat</CabButton>\n        <span style=\"color: var(--cab-color-text-muted); font-size: var(--cab-font-size-sm)\">12 seats left</span>\n      </template>\n    </CabCard>\n  </div>\n</template>\n"
+          "code": "<!-- A content card with a tag, body text and an action. -->\n<script setup lang=\"ts\">\nimport { CabButton, CabCard } from '@eltonbautista/vue'\n</script>\n\n<template>\n  <div style=\"max-width: 360px\">\n    <CabCard title=\"Weekend game jam\" :heading-level=\"2\">\n      <p>Two days of prototyping, playtesting and pizza. No experience needed.</p>\n      <template #footer>\n        <CabButton size=\"sm\">Save a seat</CabButton>\n        <span style=\"color: var(--cab-color-text-muted); font-size: var(--cab-font-size-sm)\">12 seats left</span>\n      </template>\n    </CabCard>\n  </div>\n</template>\n"
         },
         {
           "name": "Clickable",
           "description": "A whole card that links somewhere, using href (stretched title link).",
-          "code": "<!-- A whole card that links somewhere, using href (stretched title link). -->\n<script setup lang=\"ts\">\nimport { CabCard } from '@cabinet-ds/vue'\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-5); grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width: 760px\">\n    <CabCard title=\"Board game design\" href=\"#board\" :heading-level=\"2\">\n      <p>Cards, dice and rules that fit on one page.</p>\n    </CabCard>\n    <CabCard title=\"Digital prototyping\" href=\"#digital\" :heading-level=\"2\">\n      <p>Make something playable in a browser by Sunday.</p>\n    </CabCard>\n  </div>\n</template>\n"
+          "code": "<!-- A whole card that links somewhere, using href (stretched title link). -->\n<script setup lang=\"ts\">\nimport { CabCard } from '@eltonbautista/vue'\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-5); grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); max-width: 760px\">\n    <CabCard title=\"Board game design\" href=\"#board\" :heading-level=\"2\">\n      <p>Cards, dice and rules that fit on one page.</p>\n    </CabCard>\n    <CabCard title=\"Digital prototyping\" href=\"#digital\" :heading-level=\"2\">\n      <p>Make something playable in a browser by Sunday.</p>\n    </CabCard>\n  </div>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabCheckbox",
-      "import": "import { CabCheckbox } from '@cabinet-ds/vue'",
+      "import": "import { CabCheckbox } from '@eltonbautista/vue'",
       "description": "A checkbox for a yes/no choice that is confirmed later (e.g. on form submit). Native `<input type=\"checkbox\">` with a chunky custom box; native semantics are kept.",
       "props": [
         {
@@ -200,18 +200,18 @@
         {
           "name": "Basic",
           "description": "A single checkbox bound with v-model.",
-          "code": "<!-- A single checkbox bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@cabinet-ds/vue'\n\nconst agreed = ref(false)\n</script>\n\n<template>\n  <CabCheckbox v-model=\"agreed\" label=\"I agree to the code of conduct\" />\n</template>\n"
+          "code": "<!-- A single checkbox bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@eltonbautista/vue'\n\nconst agreed = ref(false)\n</script>\n\n<template>\n  <CabCheckbox v-model=\"agreed\" label=\"I agree to the code of conduct\" />\n</template>\n"
         },
         {
           "name": "WithHint",
           "description": "A group of checkboxes inside a fieldset, one with a hint.",
-          "code": "<!-- A group of checkboxes inside a fieldset, one with a hint. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@cabinet-ds/vue'\n\nconst lunch = ref(true)\nconst parking = ref(false)\n</script>\n\n<template>\n  <fieldset style=\"border: 0; padding: 0; margin: 0; display: grid; gap: var(--cab-space-3)\">\n    <legend style=\"font-weight: var(--cab-font-weight-bold); margin-block-end: var(--cab-space-3)\">Extras</legend>\n    <CabCheckbox v-model=\"lunch\" label=\"Lunch on both days\" hint=\"Vegetarian and vegan options included.\" />\n    <CabCheckbox v-model=\"parking\" label=\"Parking pass\" />\n  </fieldset>\n</template>\n"
+          "code": "<!-- A group of checkboxes inside a fieldset, one with a hint. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabCheckbox } from '@eltonbautista/vue'\n\nconst lunch = ref(true)\nconst parking = ref(false)\n</script>\n\n<template>\n  <fieldset style=\"border: 0; padding: 0; margin: 0; display: grid; gap: var(--cab-space-3)\">\n    <legend style=\"font-weight: var(--cab-font-weight-bold); margin-block-end: var(--cab-space-3)\">Extras</legend>\n    <CabCheckbox v-model=\"lunch\" label=\"Lunch on both days\" hint=\"Vegetarian and vegan options included.\" />\n    <CabCheckbox v-model=\"parking\" label=\"Parking pass\" />\n  </fieldset>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabDialog",
-      "import": "import { CabDialog } from '@cabinet-ds/vue'",
+      "import": "import { CabDialog } from '@eltonbautista/vue'",
       "description": "A modal dialog for a short, focused task or a confirmation that must be answered before continuing. Built on the native `<dialog>` with `showModal()`, so the page behind it is inert.",
       "props": [
         {
@@ -271,18 +271,18 @@
         {
           "name": "Basic",
           "description": "A dialog opened from a button, with a form field and actions.",
-          "code": "<!-- A dialog opened from a button, with a form field and actions. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog, CabTextField } from '@cabinet-ds/vue'\n\nconst open = ref(false)\nconst name = ref('')\n</script>\n\n<template>\n  <CabButton @click=\"open = true\">Save my seat</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Save your seat?\" description=\"We'll hold it for 24 hours.\">\n    <CabTextField v-model=\"name\" label=\"Name on the badge\" autocomplete=\"name\" />\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Cancel</CabButton>\n      <CabButton @click=\"open = false\">Hold my seat</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
+          "code": "<!-- A dialog opened from a button, with a form field and actions. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog, CabTextField } from '@eltonbautista/vue'\n\nconst open = ref(false)\nconst name = ref('')\n</script>\n\n<template>\n  <CabButton @click=\"open = true\">Save my seat</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Save your seat?\" description=\"We'll hold it for 24 hours.\">\n    <CabTextField v-model=\"name\" label=\"Name on the badge\" autocomplete=\"name\" />\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Cancel</CabButton>\n      <CabButton @click=\"open = false\">Hold my seat</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
         },
         {
           "name": "Confirm",
           "description": "A confirmation with no form fields; focus starts on the first action.",
-          "code": "<!-- A confirmation with no form fields; focus starts on the first action. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog } from '@cabinet-ds/vue'\n\nconst open = ref(false)\n</script>\n\n<template>\n  <CabButton variant=\"secondary\" @click=\"open = true\">Leave the waitlist</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Leave the waitlist?\">\n    <p style=\"margin: 0\">You'll lose your place. You can join again later, at the back of the queue.</p>\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Stay on it</CabButton>\n      <CabButton @click=\"open = false\">Leave waitlist</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
+          "code": "<!-- A confirmation with no form fields; focus starts on the first action. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabButton, CabDialog } from '@eltonbautista/vue'\n\nconst open = ref(false)\n</script>\n\n<template>\n  <CabButton variant=\"secondary\" @click=\"open = true\">Leave the waitlist</CabButton>\n  <CabDialog v-model:open=\"open\" title=\"Leave the waitlist?\">\n    <p style=\"margin: 0\">You'll lose your place. You can join again later, at the back of the queue.</p>\n    <template #footer>\n      <CabButton variant=\"ghost\" @click=\"open = false\">Stay on it</CabButton>\n      <CabButton @click=\"open = false\">Leave waitlist</CabButton>\n    </template>\n  </CabDialog>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabSelect",
-      "import": "import { CabSelect } from '@cabinet-ds/vue'",
+      "import": "import { CabSelect } from '@eltonbautista/vue'",
       "description": "A select-only combobox: pick one value from a short list of options. Follows the APG \"Select-Only Combobox\" pattern; focus never leaves the combobox.",
       "props": [
         {
@@ -352,18 +352,18 @@
         {
           "name": "Basic",
           "description": "A select bound with v-model, with a hint and a disabled option.",
-          "code": "<!-- A select bound with v-model, with a hint and a disabled option. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@cabinet-ds/vue'\n\nconst level = ref<string | null>(null)\nconst options = [\n  { value: 'new', label: 'New to game design' },\n  { value: 'hobby', label: 'Hobbyist' },\n  { value: 'student', label: 'Student (waitlist only)', disabled: true },\n  { value: 'pro', label: 'Professional' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"level\" label=\"Experience level\" :options=\"options\" hint=\"Helps us pair you with a teammate.\" />\n  </div>\n</template>\n"
+          "code": "<!-- A select bound with v-model, with a hint and a disabled option. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@eltonbautista/vue'\n\nconst level = ref<string | null>(null)\nconst options = [\n  { value: 'new', label: 'New to game design' },\n  { value: 'hobby', label: 'Hobbyist' },\n  { value: 'student', label: 'Student (waitlist only)', disabled: true },\n  { value: 'pro', label: 'Professional' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"level\" label=\"Experience level\" :options=\"options\" hint=\"Helps us pair you with a teammate.\" />\n  </div>\n</template>\n"
         },
         {
           "name": "WithError",
           "description": "A required select showing a validation error.",
-          "code": "<!-- A required select showing a validation error. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@cabinet-ds/vue'\n\nconst track = ref<string | null>(null)\nconst options = [\n  { value: 'board', label: 'Board games' },\n  { value: 'digital', label: 'Digital games' },\n  { value: 'larp', label: 'Live-action' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"track\" label=\"Track\" :options=\"options\" error=\"Choose a track so we can save you a seat.\" />\n  </div>\n</template>\n"
+          "code": "<!-- A required select showing a validation error. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSelect } from '@eltonbautista/vue'\n\nconst track = ref<string | null>(null)\nconst options = [\n  { value: 'board', label: 'Board games' },\n  { value: 'digital', label: 'Digital games' },\n  { value: 'larp', label: 'Live-action' },\n]\n</script>\n\n<template>\n  <div style=\"max-width: 320px\">\n    <CabSelect v-model=\"track\" label=\"Track\" :options=\"options\" error=\"Choose a track so we can save you a seat.\" />\n  </div>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabSwitch",
-      "import": "import { CabSwitch } from '@cabinet-ds/vue'",
+      "import": "import { CabSwitch } from '@eltonbautista/vue'",
       "description": "An on/off switch for a setting that takes effect immediately. A `<button role=\"switch\">` labelled by a native `<label>`.",
       "props": [
         {
@@ -406,18 +406,18 @@
         {
           "name": "Basic",
           "description": "A switch bound with v-model.",
-          "code": "<!-- A switch bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@cabinet-ds/vue'\n\nconst reminders = ref(true)\n</script>\n\n<template>\n  <CabSwitch v-model=\"reminders\" label=\"Workshop reminders\" />\n</template>\n"
+          "code": "<!-- A switch bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@eltonbautista/vue'\n\nconst reminders = ref(true)\n</script>\n\n<template>\n  <CabSwitch v-model=\"reminders\" label=\"Workshop reminders\" />\n</template>\n"
         },
         {
           "name": "Settings",
           "description": "A short list of instant settings, one disabled.",
-          "code": "<!-- A short list of instant settings, one disabled. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@cabinet-ds/vue'\n\nconst newsletter = ref(false)\nconst sounds = ref(true)\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-4); justify-items: start\">\n    <CabSwitch v-model=\"newsletter\" label=\"Monthly newsletter\" />\n    <CabSwitch v-model=\"sounds\" label=\"Arcade sounds\" />\n    <CabSwitch :model-value=\"false\" label=\"Live captions (coming soon)\" disabled />\n  </div>\n</template>\n"
+          "code": "<!-- A short list of instant settings, one disabled. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabSwitch } from '@eltonbautista/vue'\n\nconst newsletter = ref(false)\nconst sounds = ref(true)\n</script>\n\n<template>\n  <div style=\"display: grid; gap: var(--cab-space-4); justify-items: start\">\n    <CabSwitch v-model=\"newsletter\" label=\"Monthly newsletter\" />\n    <CabSwitch v-model=\"sounds\" label=\"Arcade sounds\" />\n    <CabSwitch :model-value=\"false\" label=\"Live captions (coming soon)\" disabled />\n  </div>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabTabs",
-      "import": "import { CabTabs } from '@cabinet-ds/vue'",
+      "import": "import { CabTabs } from '@eltonbautista/vue'",
       "description": "Tabs that switch between related panels of content in place. Follows the APG Tabs pattern with roving tabindex and automatic or manual activation.",
       "props": [
         {
@@ -474,18 +474,18 @@
         {
           "name": "Basic",
           "description": "Three tabs with automatic activation (selection follows focus).",
-          "code": "<!-- Three tabs with automatic activation (selection follows focus). -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@cabinet-ds/vue'\n\nconst tab = ref('schedule')\nconst tabs = [\n  { id: 'schedule', label: 'Schedule' },\n  { id: 'venue', label: 'Venue' },\n  { id: 'faq', label: 'FAQ' },\n]\nconst copy: Record<string, string> = {\n  schedule: 'Saturday 10:00 to 17:00: prototyping. Sunday 10:00 to 15:00: playtests and demos.',\n  venue: 'The Old Arcade, 12 Pinball Lane. Step-free entrance on the east side.',\n  faq: 'Bring a laptop if you have one. Paper prototyping kits are provided.',\n}\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop details\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">{{ copy[t.id] }}</p>\n    </template>\n  </CabTabs>\n</template>\n"
+          "code": "<!-- Three tabs with automatic activation (selection follows focus). -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@eltonbautista/vue'\n\nconst tab = ref('schedule')\nconst tabs = [\n  { id: 'schedule', label: 'Schedule' },\n  { id: 'venue', label: 'Venue' },\n  { id: 'faq', label: 'FAQ' },\n]\nconst copy: Record<string, string> = {\n  schedule: 'Saturday 10:00 to 17:00: prototyping. Sunday 10:00 to 15:00: playtests and demos.',\n  venue: 'The Old Arcade, 12 Pinball Lane. Step-free entrance on the east side.',\n  faq: 'Bring a laptop if you have one. Paper prototyping kits are provided.',\n}\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop details\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">{{ copy[t.id] }}</p>\n    </template>\n  </CabTabs>\n</template>\n"
         },
         {
           "name": "Manual",
           "description": "Manual activation (arrows move focus, Enter or Space selects) and a disabled tab.",
-          "code": "<!-- Manual activation (arrows move focus, Enter or Space selects) and a disabled tab. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@cabinet-ds/vue'\n\nconst tab = ref('day1')\nconst tabs = [\n  { id: 'day1', label: 'Day 1' },\n  { id: 'day2', label: 'Day 2' },\n  { id: 'day3', label: 'Day 3 (sold out)', disabled: true },\n]\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop days\" activation=\"manual\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">Sessions for {{ t.label }}.</p>\n    </template>\n  </CabTabs>\n</template>\n"
+          "code": "<!-- Manual activation (arrows move focus, Enter or Space selects) and a disabled tab. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTabs } from '@eltonbautista/vue'\n\nconst tab = ref('day1')\nconst tabs = [\n  { id: 'day1', label: 'Day 1' },\n  { id: 'day2', label: 'Day 2' },\n  { id: 'day3', label: 'Day 3 (sold out)', disabled: true },\n]\n</script>\n\n<template>\n  <CabTabs v-model=\"tab\" :tabs=\"tabs\" label=\"Workshop days\" activation=\"manual\">\n    <template #panel=\"{ tab: t }\">\n      <p style=\"margin: 0\">Sessions for {{ t.label }}.</p>\n    </template>\n  </CabTabs>\n</template>\n"
         }
       ]
     },
     {
       "name": "CabTextField",
-      "import": "import { CabTextField } from '@cabinet-ds/vue'",
+      "import": "import { CabTextField } from '@eltonbautista/vue'",
       "description": "A single-line text input with a visible label, optional hint and an error message. Errors are announced through `aria-describedby` and marked with `aria-invalid`.",
       "props": [
         {
@@ -566,17 +566,17 @@
         {
           "name": "Basic",
           "description": "A labelled text field bound with v-model.",
-          "code": "<!-- A labelled text field bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst name = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"name\" label=\"Your name\" autocomplete=\"name\" />\n</template>\n"
+          "code": "<!-- A labelled text field bound with v-model. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@eltonbautista/vue'\n\nconst name = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"name\" label=\"Your name\" autocomplete=\"name\" />\n</template>\n"
         },
         {
           "name": "WithError",
           "description": "Showing a validation error that names the problem and the fix.",
-          "code": "<!-- Showing a validation error that names the problem and the fix. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst email = ref('pixel@')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" error=\"Add the part after @, like pixel@example.com.\" />\n</template>\n"
+          "code": "<!-- Showing a validation error that names the problem and the fix. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@eltonbautista/vue'\n\nconst email = ref('pixel@')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" error=\"Add the part after @, like pixel@example.com.\" />\n</template>\n"
         },
         {
           "name": "WithHint",
           "description": "A required email field with hint text.",
-          "code": "<!-- A required email field with hint text. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@cabinet-ds/vue'\n\nconst email = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" autocomplete=\"email\" required hint=\"We only use it to send your ticket.\" />\n</template>\n"
+          "code": "<!-- A required email field with hint text. -->\n<script setup lang=\"ts\">\nimport { ref } from 'vue'\nimport { CabTextField } from '@eltonbautista/vue'\n\nconst email = ref('')\n</script>\n\n<template>\n  <CabTextField v-model=\"email\" label=\"Email\" type=\"email\" autocomplete=\"email\" required hint=\"We only use it to send your ticket.\" />\n</template>\n"
         }
       ]
     }

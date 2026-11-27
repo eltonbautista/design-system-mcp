@@ -1,7 +1,7 @@
 <!-- Manual activation (arrows move focus, Enter or Space selects) and a disabled tab. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabTabs } from '@cabinet-ds/vue'
+import { CabTabs } from '@eltonbautista/vue'
 
 const tab = ref('day1')
 const tabs = [

@@ -1,7 +1,7 @@
 <!-- A short list of instant settings, one disabled. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabSwitch } from '@cabinet-ds/vue'
+import { CabSwitch } from '@eltonbautista/vue'
 
 const newsletter = ref(false)
 const sounds = ref(true)

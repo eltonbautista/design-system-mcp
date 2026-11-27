@@ -1,6 +1,6 @@
 <!-- A whole card that links somewhere, using href (stretched title link). -->
 <script setup lang="ts">
-import { CabCard } from '@cabinet-ds/vue'
+import { CabCard } from '@eltonbautista/vue'
 </script>
 
 <template>

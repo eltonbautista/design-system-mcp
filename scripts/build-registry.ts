@@ -35,7 +35,7 @@ export function buildRegistry(root: string): Registry {
   const vueDir = join(root, 'packages/vue')
   const pkg = readJson<{ name: string; version: string }>(join(vueDir, 'package.json'))
   const tokensFile = join(root, 'packages/tokens/dist/tokens.json')
-  if (!existsSync(tokensFile)) throw new Error('packages/tokens/dist/tokens.json is missing: run pnpm --filter @cabinet-ds/tokens build')
+  if (!existsSync(tokensFile)) throw new Error('packages/tokens/dist/tokens.json is missing: run pnpm --filter @eltonbautista/tokens build')
   const tokens = readJson<TokenEntry[]>(tokensFile)
 
   const checker = createChecker(join(vueDir, 'tsconfig.json'), { printer: { newLine: 1 } })

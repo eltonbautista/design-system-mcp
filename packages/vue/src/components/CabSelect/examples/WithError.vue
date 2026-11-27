@@ -1,7 +1,7 @@
 <!-- A required select showing a validation error. -->
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CabSelect } from '@cabinet-ds/vue'
+import { CabSelect } from '@eltonbautista/vue'
 
 const track = ref<string | null>(null)
 const options = [

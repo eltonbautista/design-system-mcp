@@ -23,13 +23,13 @@ jobs:
       - name: Lint (incl. vuejs-accessibility)
         run: pnpm lint
       - name: Build tokens
-        run: pnpm --filter @cabinet-ds/tokens build
+        run: pnpm --filter @eltonbautista/tokens build
       - name: Typecheck
         run: pnpm typecheck
       - name: Token contrast checks (WCAG AA)
-        run: pnpm --filter @cabinet-ds/tokens test
+        run: pnpm --filter @eltonbautista/tokens test
       - name: Install Chromium for browser tests
-        run: pnpm --filter @cabinet-ds/vue exec playwright install --with-deps chromium
+        run: pnpm --filter @eltonbautista/vue exec playwright install --with-deps chromium
       - name: Component tests (keyboard, focus, axe) + Storybook stories + MCP + registry
         run: pnpm test
       - name: Registry is in sync with the source

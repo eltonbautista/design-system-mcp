@@ -1,5 +1,5 @@
 {
-  "name": "@cabinet-ds/mcp",
+  "name": "@eltonbautista/mcp",
   "version": "0.0.0",
   "description": "MCP server that teaches AI coding assistants the Cabinet Vue components and tokens.",
   "type": "module",
@@ -44,7 +44,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/REPLACE_GH_OWNER/REPLACE_GH_REPO.git",
+    "url": "git+https://github.com/eltonbautista/design-system-mcp.git",
     "directory": "packages/mcp"
   },
   "publishConfig": {
