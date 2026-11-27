@@ -7,3 +7,5 @@ export { default as CabCheckbox } from './components/CabCheckbox/CabCheckbox.vue
 export { default as CabSwitch } from './components/CabSwitch/CabSwitch.vue'
 export { default as CabTabs } from './components/CabTabs/CabTabs.vue'
 export type { CabTab } from './components/CabTabs/CabTabs.vue'
+export { default as CabSelect } from './components/CabSelect/CabSelect.vue'
+export type { CabSelectOption } from './components/CabSelect/CabSelect.vue'
